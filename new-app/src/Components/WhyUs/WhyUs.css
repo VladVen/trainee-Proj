@@ -1,0 +1,56 @@
+.section{
+    display: flex;
+    flex: 1;
+    margin-top: 190px;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.leftSide > img {
+    width: 600px;
+}
+
+.titleSection > div:first-child{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 140%;
+    letter-spacing: -0.01em;
+}
+.titleSection > div:nth-child(2){
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 140%;
+    letter-spacing: 0.15px;
+}
+
+.sectionList {
+    margin-top: 40px;
+}
+
+.sectionList > img {
+    width: 100%;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 1200px){
+    .leftSide > img {
+        width: 400px;
+    }
+}
+@media screen and (max-width: 950px){
+    .leftSide > img {
+        width: 100%;
+    }
+    .section {
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 430px){
+    .section {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}

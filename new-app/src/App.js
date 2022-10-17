@@ -1,25 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import {Header} from "./Components/Header/Header";
+import {StartJourney} from "./Components/StartJourney/StartJourney";
+import {List} from "./Components/List/List";
+import {WhyUs} from "./Components/WhyUs/WhyUs";
+import map from "./assets/map.png"
+import footer from "./assets/footer.png"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="background">
+            <Header/>
+            <div className="dottedLine">
+                <StartJourney/>
+                <List/>
+            </div>
+            <WhyUs />
+            <div className="map">
+                <img src={map} alt="map"/>
+            </div>
+
+            <footer>
+                <img src={footer} alt={'footer'}/>
+            </footer>
+        </div>
+    );
 }
 
 export default App;
