@@ -1,0 +1,16 @@
+
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #00203FFF ;
+}
+
+.signIn {
+    background: #ADEFD1FF;
+    color: black;
+    border-radius: 10px;
+}

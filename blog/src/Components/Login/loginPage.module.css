@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.title {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    font-weight: 500;
+    font-size: 56px;
+}
+
+
+.form {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 400px;
+}
+
+.form > div {
+    margin-bottom: 10px;
+}
+
+.submit {
+    background-color: #00203FFF;
+    color: white;
+    border-radius: 10px;
+}
