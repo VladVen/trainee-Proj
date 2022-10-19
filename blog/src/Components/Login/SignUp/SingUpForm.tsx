@@ -14,6 +14,10 @@ type SingUpFormType = {
     handleBack: () => void
 }
 
+const initialValues = {
+    name: '', email: '', password: '', extra_details: '',
+    skills: '', profession: '', details: ''
+}
 
 export const SingUpForm: React.FC<SingUpFormType> = ({activeStep, handleBack, handleNext,}) => {
     const dispatch = useDispatch()
@@ -22,10 +26,7 @@ export const SingUpForm: React.FC<SingUpFormType> = ({activeStep, handleBack, ha
     return (
         <div>
             <Formik
-                initialValues={{
-                    name: '', email: '', password: '', extra_details: '',
-                    skills: '', profession: '', details: ''
-                }}
+                initialValues={initialValues}
                 onSubmit={async (values, {setSubmitting}) => {
                     await dispatch(setRegister(values) as unknown as AnyAction)
                     setSubmitting(false)
