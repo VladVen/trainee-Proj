@@ -1,9 +1,10 @@
+import Box from "@mui/material/Box";
 
 
 export const MainPage = () => {
     return (
-        <div>
-            Main Page
-        </div>
+        <Box>
+            Main Layout
+        </Box>
     )
 }

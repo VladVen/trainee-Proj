@@ -24,15 +24,20 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 400px;
+    width: 300px;
 }
 
 .form > div {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .submit {
-    background-color: #00203FFF;
-    color: white;
-    border-radius: 10px;
+    background-color: #00203FFF !important;
+    color: white !important;
+    border-radius: 10px !important;
+}
+
+.link {
+    text-decoration: none;
+    color: #00203FFF;
 }
