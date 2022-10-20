@@ -2,18 +2,22 @@ import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import {useState} from "react";
-import React from "react";
+import React, {useState} from "react";
 import {SingUpForm} from "./SingUpForm";
-import {NavLink} from "react-router-dom";
-import style from './signup.module.css'
+import {useSelector} from "react-redux";
+import {AppStateType} from "../../../redux/store";
+import {Navigate} from "react-router-dom";
 
 const steps = ['Register', 'Extra Details', 'About you'];
 
-export default function HorizontalLinearStepper() {
+export const SingUp = () => {
     const [activeStep, setActiveStep] = useState(0);
+
+    const authData = useSelector((state: AppStateType) => state.auth.authData)
+
+    if (authData) {
+        return <Navigate to={'/blog'}/>
+    }
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -35,23 +39,11 @@ export default function HorizontalLinearStepper() {
                     );
                 })}
             </Stepper>
-            {activeStep === steps.length ? (
-                <Box sx={{display: 'flex', flex: 1, flexDirection: 'column', marginTop: '30px',
-                    alignItems: 'center', justifyContent: 'center'
-                }}>
-                    <Typography sx={{mt: 2, mb: 5}}>
-                        Congratulation you are registered now
-                    </Typography>
-                    <Button variant='contained'><NavLink to={'/login'} className={style.link}>Go to Sign In</NavLink></Button>
-
-                </Box>
-            ) : (
                 <div style={{marginTop: '30px'}}>
                     <SingUpForm activeStep={activeStep} handleNext={handleNext}
                                 handleBack={handleBack}/>
 
                 </div>
-            )}
         </Box>
     );
 }

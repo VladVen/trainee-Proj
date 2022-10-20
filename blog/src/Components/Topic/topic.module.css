@@ -10,6 +10,15 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+.leftRightSide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leftRightSide > div {
+    margin-right: 20px;
+}
 
 .signIn {
     background-color: #FFE5B4 !important;

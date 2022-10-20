@@ -1,43 +1,44 @@
-import React, {ChangeEvent} from "react";
-import style from "../SignIn/loginPage.module.css";
-import {Field, Form, Formik} from "formik";
-import {Button, TextField} from "@mui/material";
+import React from "react";
+import style from "../SignIn/signIn.module.css";
+import {Form, Formik} from "formik";
+import {Button} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import {setRegister} from "../../../redux/reducers/authReducer";
 import {AnyAction} from "redux";
 import Box from "@mui/material/Box";
 import {AppStateType} from "../../../redux/store";
+import {AppField} from "../../CustomComponents/AppField";
+import signUpValidationSchema from "./validator";
+import {setRegister} from "../../../redux/Login/thunks";
 
 type SingUpFormType = {
     activeStep: number
     handleNext: () => void
     handleBack: () => void
 }
-
 const initialValues = {
     name: '', email: '', password: '', extra_details: '',
     skills: '', profession: '', details: ''
 }
+type initialValuesType = typeof initialValues
+type setSubmittingType = (status: boolean) => void
 
 export const SingUpForm: React.FC<SingUpFormType> = ({activeStep, handleBack, handleNext,}) => {
     const dispatch = useDispatch()
     const errorMessage = useSelector((state: AppStateType) => state.auth.error)
 
+    const SubmitHandler = async (values: initialValuesType, setSubmitting: setSubmittingType) => {
+        await dispatch(setRegister(values) as unknown as AnyAction)
+        setSubmitting(false)
+    }
+
     return (
         <div>
             <Formik
                 initialValues={initialValues}
-                onSubmit={async (values, {setSubmitting}) => {
-                    await dispatch(setRegister(values) as unknown as AnyAction)
-                    setSubmitting(false)
-                    if (errorMessage !== null) {
-                        handleNext()
-                    }
-                }}>
-                {({isSubmitting, values, setFieldValue}) => {
-                    const onChangeHandler = (value: string, e: ChangeEvent<HTMLInputElement>) => {
-                        setFieldValue(value, e.currentTarget.value)
-                    }
+                validationSchema={signUpValidationSchema}
+                onSubmit={(values, {setSubmitting}) => SubmitHandler(values, setSubmitting)}>
+                {({isSubmitting, values, errors, setFieldValue}) => {
+
                     const submitValidator = () => {
                         return !values.name || !values.email || !values.password
                             || !values.extra_details || !values.skills
@@ -48,70 +49,31 @@ export const SingUpForm: React.FC<SingUpFormType> = ({activeStep, handleBack, ha
                         <div className={style.form}>
                             {
                                 activeStep === 0 && <>
-                                    <Field name="name" component={TextField}
-                                           id="name" label="Name"
-                                           required
-                                           fullWidth
-                                           onChange={(e: ChangeEvent<HTMLInputElement>) => onChangeHandler('name', e)}
-                                           value={values.name}
-                                           variant="outlined"/>
-                                    <Field name="email" component={TextField}
-                                           id="email" label="Email"
-                                           required
-                                           fullWidth
-                                           onChange={(e: ChangeEvent<HTMLInputElement>) => onChangeHandler('email', e)}
-                                           value={values.email}
-                                           variant="outlined"/>
-
-
-                                    <Field name="password" component={TextField}
-                                           onChange={(e: ChangeEvent<HTMLInputElement>) => onChangeHandler('password', e)}
-                                           value={values.password}
-                                           id="password"
-                                           required
-                                           fullWidth
-                                           type="password"
-                                           label="Password"
-                                           inputProps={{maxLength: 10}}
-                                           variant="outlined"/>
+                                    <AppField name={'name'} label={'Name'} error={errors.name}
+                                              value={values.name} setValue={setFieldValue}/>
+                                    <AppField name={'email'} label={'Email'} error={errors.email}
+                                              value={values.email} setValue={setFieldValue}/>
+                                    <AppField name={'password'} label={'Password'} error={errors.password}
+                                              value={values.password} setValue={setFieldValue}
+                                    />
                                 </>
 
                             }
                             {
                                 activeStep === 1 && <>
-                                    <Field name="extra_details" component={TextField}
-                                           id="extra_details" label="Extra Details"
-                                           required
-                                           fullWidth
-                                           onChange={(e: ChangeEvent<HTMLInputElement>) => onChangeHandler('extra_details', e)}
-                                           value={values.extra_details}
-                                           variant="outlined"/>
+                                    <AppField name={'extra_details'} label={'Extra Details'} error={errors.extra_details}
+                                              value={values.extra_details} setValue={setFieldValue}/>
                                 </>
 
                             }
                             {
                                 activeStep === 2 && <>
-                                    <Field name="skills" component={TextField}
-                                           id="skills" label="Skills"
-                                           required
-                                           fullWidth
-                                           onChange={(e: ChangeEvent<HTMLInputElement>) => onChangeHandler('skills', e)}
-                                           value={values.skills}
-                                           variant="outlined"/>
-                                    <Field name="profession" component={TextField}
-                                           id="profession" label="Profession"
-                                           required
-                                           fullWidth
-                                           onChange={(e: ChangeEvent<HTMLInputElement>) => onChangeHandler('profession', e)}
-                                           value={values.profession}
-                                           variant="outlined"/>
-                                    <Field name="details" component={TextField}
-                                           id="details" label="Details"
-                                           required
-                                           fullWidth
-                                           onChange={(e: ChangeEvent<HTMLInputElement>) => onChangeHandler('details', e)}
-                                           value={values.details}
-                                           variant="outlined"/>
+                                    <AppField name={'skills'} label={'Skills'} error={errors.skills}
+                                              value={values.skills} setValue={setFieldValue}/>
+                                    <AppField name={'profession'} label={'Profession'} error={errors.profession}
+                                              value={values.profession} setValue={setFieldValue}/>
+                                    <AppField name={'details'} label={'Details'} error={errors.details}
+                                              value={values.details} setValue={setFieldValue}/>
                                 </>
 
                             }
@@ -122,7 +84,6 @@ export const SingUpForm: React.FC<SingUpFormType> = ({activeStep, handleBack, ha
                                 {
                                     activeStep > 0 && <Button
                                         variant="contained"
-                                        disabled={activeStep === 0}
                                         onClick={handleBack}
                                         sx={{mr: 5}}
                                     >
@@ -139,7 +100,7 @@ export const SingUpForm: React.FC<SingUpFormType> = ({activeStep, handleBack, ha
                                         </Button>
                                         : <Button onClick={() => handleNext()}
                                                   variant='contained'
-                                                  disabled={!values.name || !values.email || !values.password}
+                                                  disabled={!values.name || !values.email || !values.password || Object.keys(errors).length !== 0}
                                         >
                                             Next
                                         </Button>

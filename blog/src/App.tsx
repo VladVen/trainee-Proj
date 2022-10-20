@@ -1,11 +1,9 @@
 import './App.css';
-import {LogInPage} from "./Components/Login/SignIn/LogInPage";
-import {Navigate, Route, Routes} from "react-router-dom";
-import {MainPage} from "./Components/Blog/MainPage";
+import {Route, Routes} from "react-router-dom";
 import {Topic} from "./Components/Topic/Topic";
 import {Footer} from "./Components/Footer/Footer";
-import HorizontalLinearStepper from "./Components/Login/SignUp/SingUpPage";
 import {createTheme, ThemeProvider} from "@mui/material";
+import {layout} from "./Layout/layout";
 
 const theme = createTheme({
     palette: {
@@ -13,7 +11,7 @@ const theme = createTheme({
             main: '#f4a384'
         },
         secondary: {
-            main: '#00203FFF'
+            main: '#FFE5B4'
         },
         text: {
             primary: '#00203FFF',
@@ -21,18 +19,16 @@ const theme = createTheme({
     },
 });
 
+
 function App() {
     return (
         <ThemeProvider theme={theme} >
             <div className="App">
                 <Topic/>
                 <Routes>
-                    <Route path='/login' element={<LogInPage/>}/>
-                    <Route path='/blog' element={<MainPage/>}/>
-                    <Route path='/register' element={<HorizontalLinearStepper/>}/>
-                    <Route path='*' element={<div><b>404 not Found</b></div>}/>
-                    <Route path='/' element={<Navigate to="/login"/>}
-                    />
+                    {
+                        layout.map(({path, element}, key) => <Route path={path} element={element} key={key} />)
+                    }
                 </Routes>
                 <Footer/>
             </div>

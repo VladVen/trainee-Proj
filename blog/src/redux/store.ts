@@ -1,7 +1,7 @@
 import {Action, applyMiddleware, combineReducers, compose, legacy_createStore as createStore} from "redux";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import {useDispatch} from "react-redux";
-import authReducer from "./reducers/authReducer";
+import {authReducer} from "./Login/reducer";
 
 const reducersPack = combineReducers({
     auth: authReducer
