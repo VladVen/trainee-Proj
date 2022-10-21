@@ -1,18 +1,13 @@
 import style from './topic.module.css'
 import {Button} from "@mui/material";
 import {NavLink} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {AppStateType} from "../../redux/store";
-import {actions} from "../../redux/Login/actions";
+import {TopicMenu} from "../../Components/TopicMenu/TopicMenu";
 
 export const Topic = () => {
 
-    const dispatch = useDispatch()
     const name = useSelector((state: AppStateType) => state.auth.authData?.name)
-
-    const logoutHandler = () => {
-        dispatch(actions.logout())
-    }
 
     return (
         <div className={style.container}>
@@ -34,14 +29,12 @@ export const Topic = () => {
             </div>
 
             <div className={style.leftRightSide}>
-                {name && <div>{name}</div>}
+
 
                 <Button variant="contained" color='secondary'>
                     {
                         name
-                            ? <NavLink to={'/signin'} className={style.link}
-                                       onClick={logoutHandler}>
-                                Log out</NavLink>
+                            ? <TopicMenu name={name}/>
                             : <NavLink to={'/signin'} className={style.link}>Sign In </NavLink>
                     }
 

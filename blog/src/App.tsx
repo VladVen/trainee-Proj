@@ -1,9 +1,9 @@
 import './App.css';
 import {Route, Routes} from "react-router-dom";
-import {Topic} from "./Components/Topic/Topic";
-import {Footer} from "./Components/Footer/Footer";
+import {Topic} from "./Pages/Topic/Topic";
+import {Footer} from "./Pages/Footer/Footer";
 import {createTheme, ThemeProvider} from "@mui/material";
-import {layout} from "./Layout/layout";
+import {routes} from "./Routes/routes";
 
 const theme = createTheme({
     palette: {
@@ -17,6 +17,18 @@ const theme = createTheme({
             primary: '#00203FFF',
         },
     },
+    components: {
+        MuiTooltip: {
+            styleOverrides: {
+                tooltip: {
+                    backgroundColor: '#F7C3B1',
+                },
+                arrow: {
+                    color: '#F7C3B1'
+                },
+            },
+        },
+    },
 });
 
 
@@ -27,7 +39,7 @@ function App() {
                 <Topic/>
                 <Routes>
                     {
-                        layout.map(({path, element}, key) => <Route path={path} element={element} key={key} />)
+                        routes.map(({path, element}, key) => <Route path={path} element={element} key={key} />)
                     }
                 </Routes>
                 <Footer/>

@@ -12,7 +12,7 @@ type FieldType = {
     [key: string]: any
 }
 
-export const AppField: React.FC<FieldType> = ({name, label, error, value, setValue, ...restProps}) => {
+export const LoginFormField: React.FC<FieldType> = ({name, label, error, value, setValue, ...restProps}) => {
     return (
         <Box sx={{display: 'flex', flex: 1, flexDirection: 'column', width: '350px'}}>
             <Field {...restProps}

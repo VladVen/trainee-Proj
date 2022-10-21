@@ -6,7 +6,7 @@ import {Button} from "@mui/material";
 import React from "react";
 import style from "./signIn.module.css";
 import {Navigate, NavLink} from "react-router-dom";
-import {AppField} from "../../CustomComponents/AppField";
+import {LoginFormField} from "../../../Components/LoginFormField/LoginFormField";
 import Box from "@mui/material/Box";
 import signInValidationSchema from "./validator";
 import {setLogIn} from "../../../redux/Login/thunks";
@@ -46,11 +46,11 @@ export const SignIn = () => {
                 {({isSubmitting, values,errors, setFieldValue}) => (
                     <Form>
                         <div className={style.form}>
-                            <AppField name={'email'} label={'Email'} error={errors.email}
-                                      value={values.email} setValue={setFieldValue}/>
-                            <AppField name={'password'} label={'Password'} error={errors.password}
-                                      value={values.password} setValue={setFieldValue}
-                                      inputProps={{maxLength: 10}}
+                            <LoginFormField name={'email'} label={'Email'} error={errors.email}
+                                            value={values.email} setValue={setFieldValue}/>
+                            <LoginFormField name={'password'} label={'Password'} error={errors.password}
+                                            value={values.password} setValue={setFieldValue}
+                                            inputProps={{maxLength: 10}}
                             />
                             <div>
                                 {

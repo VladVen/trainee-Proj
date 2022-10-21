@@ -1,4 +1,4 @@
-import {loginAPI, createAccountType} from "../../API/loginAPI";
+import {loginAPI, createAccountType} from "../../API/loginAPI/loginAPI";
 import {CommonThunkType} from "../store";
 import {actions} from "./actions";
 import {ActionsType} from "./reducer";
