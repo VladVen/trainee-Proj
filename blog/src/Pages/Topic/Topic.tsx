@@ -22,7 +22,9 @@ export const Topic = () => {
                                 variant='contained'
                                 sx={{mr: 1}}>Posts</Button>
                         <Button color='secondary'
-                                variant='contained'>Users</Button>
+                                variant='contained'>
+                            <NavLink to={'/users'} className={style.link}>Users </NavLink>
+                        </Button>
                     </div>
 
                 }
