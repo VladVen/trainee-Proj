@@ -12,22 +12,21 @@ export type createAccountType = {
 
 
 
-export const authAPI = {
+export const loginAPI = {
     logIn(email: string, password: string) {
         return instance.post('auth', {email, password})
-            .then(response => response.data.token)
+            .then(response => localStorage.setItem('token', response.data.token))
     },
 
     createAccount(values: createAccountType) {
         return instance.post(`/users`, {...values})
             .then(response => response.data)
     },
-    getProfile(token: string) {
-        return instance.get(`auth/user`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
+    getProfile() {
+        return instance.get(`auth/user`)
             .then(response => response.data)
     },
 }
+
+
+
