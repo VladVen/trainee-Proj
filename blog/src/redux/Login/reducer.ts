@@ -5,7 +5,6 @@ import {commonUserType} from "../CommonDataTypes/types";
 
 const initialState = {
     authData: null as commonUserType | null,
-    token: null as string | null,
     error: null as string | null,
 }
 
@@ -35,7 +34,6 @@ export const authReducer = (state = initialState, action: ActionsType): initialS
             return {
                 ...state,
                 authData: null,
-                token: null,
                 error: null
             }
         default:

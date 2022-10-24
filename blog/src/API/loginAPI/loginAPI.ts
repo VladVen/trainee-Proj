@@ -1,14 +1,6 @@
 import {instance} from "../api";
+import {createAccountType, updateAccountType} from "../../redux/CommonDataTypes/types";
 
-export type createAccountType = {
-    email: string,
-    password: string,
-    name: string,
-    extra_details: string,
-    skills: string,
-    profession: string,
-    details: string
-}
 
 
 
@@ -24,6 +16,13 @@ export const loginAPI = {
     },
     getProfile() {
         return instance.get(`auth/user`)
+            .then(response => response.data)
+    },
+    deleteProfile(id: string) {
+        return instance.delete(`/users/${id}`)
+    },
+    updateProfile(values: updateAccountType, id: string) {
+        return instance.patch(`/users/${id}`, {...values})
             .then(response => response.data)
     },
 }

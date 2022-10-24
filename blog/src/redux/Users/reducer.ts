@@ -4,8 +4,14 @@ import {commonUserType} from "../CommonDataTypes/types";
 import {GET_USERS} from "./actionTypes";
 
 const initialState = {
-    users: [] as commonUserType[]
-
+    users: {
+        pagination: {
+            skip: null as number | null,
+            limit: null as number | null,
+            total: null as number | null,
+        },
+        data: [] as commonUserType[]
+    }
 }
 
 type initialStateType = typeof initialState
@@ -18,7 +24,16 @@ export const usersReducer = (state = initialState, action: ActionsType): initial
         case GET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.payload.users],
+                users: {
+                    ...state.users,
+                    pagination: {
+                        ...state.users.pagination,
+                        skip: action.payload.users.pagination.skip,
+                        limit: action.payload.users.pagination.limit,
+                        total: action.payload.users.pagination.total,
+                    },
+                    data: [...state.users.data, ...action.payload.users.data]
+                },
             }
         default:
             return state

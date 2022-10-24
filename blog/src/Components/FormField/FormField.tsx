@@ -12,14 +12,15 @@ type FieldType = {
     [key: string]: any
 }
 
-export const LoginFormField: React.FC<FieldType> = ({name, label, error, value, setValue, ...restProps}) => {
+export const FormField: React.FC<FieldType> = ({name, label, error,
+                                                   value, setValue, ...restProps}) => {
     return (
         <Box sx={{display: 'flex', flex: 1, flexDirection: 'column', width: '350px'}}>
             <Field {...restProps}
                    name={name} component={TextField}
                    id={name} label={label}
-                   required
                    fullWidth
+                   margin="normal"
                    error={!!error}
                    helperText={error}
                    onChange={(e: ChangeEvent<HTMLInputElement>) => {

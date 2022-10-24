@@ -6,7 +6,7 @@ import {Button} from "@mui/material";
 import React from "react";
 import style from "./signIn.module.css";
 import {Navigate, NavLink} from "react-router-dom";
-import {LoginFormField} from "../../../Components/LoginFormField/LoginFormField";
+import {FormField} from "../../../Components/FormField/FormField";
 import Box from "@mui/material/Box";
 import signInValidationSchema from "./validator";
 import {setLogIn} from "../../../redux/Login/thunks";
@@ -46,11 +46,11 @@ export const SignIn = () => {
                 {({isSubmitting, values,errors, setFieldValue}) => (
                     <Form>
                         <div className={style.form}>
-                            <LoginFormField name={'email'} label={'Email'} error={errors.email}
-                                            value={values.email} setValue={setFieldValue}/>
-                            <LoginFormField name={'password'} label={'Password'} error={errors.password}
-                                            value={values.password} setValue={setFieldValue}
-                                            inputProps={{maxLength: 10}}
+                            <FormField name={'email'} label={'Email'} error={errors.email}
+                                       value={values.email} setValue={setFieldValue}/>
+                            <FormField name={'password'} label={'Password'} error={errors.password}
+                                       value={values.password} setValue={setFieldValue}
+                                       inputProps={{maxLength: 10}}
                             />
                             <div>
                                 {
@@ -65,13 +65,13 @@ export const SignIn = () => {
                                 </Button>
                             </Box>
 
-                            <div>
+                            <Box sx={{mt: '20px'}}>
                                 <Button type="submit"
                                         variant="contained"
                                         disabled={isSubmitting}>
                                     Submit
                                 </Button>
-                            </div>
+                            </Box>
                         </div>
                     </Form>
                 )}

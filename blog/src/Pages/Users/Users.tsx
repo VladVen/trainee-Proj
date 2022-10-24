@@ -1,7 +1,7 @@
 import {CircularProgress} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/store";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {getUsers} from "../../redux/Users/thunks";
 import {AnyAction} from "redux";
 import useOnScreen from "../../Components/Hooks/useOnScreen";
@@ -19,10 +19,21 @@ export const Users = () => {
 
     const [intersecting, currentElement] = useOnScreen();
 
+    const totalCount = useMemo(() => users.pagination.total as number, [users.pagination.total])
+    const portion = useMemo(() => users.pagination.limit as number, [users.pagination.limit])
+
+    const pagesCount = useMemo(() => Math.ceil( totalCount / portion), [totalCount, portion] )
+
+
     const moreHandler = () => {
         if (intersecting) {
-            dispatch(getUsers(startValue) as unknown as AnyAction)
-            setStartValue(prevState => prevState + 10)
+            if(!users.data.length) {
+                dispatch(getUsers(startValue) as unknown as AnyAction)
+                setStartValue(prevState => prevState + 10)
+            } else if(pagesCount > startValue/10) {
+                dispatch(getUsers(startValue) as unknown as AnyAction)
+                setStartValue(prevState => prevState + 10)
+            }
         }
     }
 
@@ -30,7 +41,7 @@ export const Users = () => {
         moreHandler()
     }, [intersecting])
 
-    if (!users.length) {
+    if (!users.data.length) {
         return <Box sx={{mt: 4, display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <CircularProgress ref={currentElement}/>
         </Box>
@@ -38,7 +49,7 @@ export const Users = () => {
     return (
         <Box>
             <Box sx={{mt: 4, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                {users.map(item => <UserCard key={item._id} name={item.name} avatar={item.avatar}
+                {users.data.map(item => <UserCard key={item._id} name={item.name} avatar={item.avatar}
                                              email={item.email} status={item.extra_details}/>)}
             </Box>
             <Box sx={{mb: 5, display: 'flex', flex: 1, justifyContent: 'center'}}>
