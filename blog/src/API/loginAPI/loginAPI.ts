@@ -1,4 +1,4 @@
-import {instance} from "./api";
+import {instance} from "../api";
 
 export type createAccountType = {
     email: string,
