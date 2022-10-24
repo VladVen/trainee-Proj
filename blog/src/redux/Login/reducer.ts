@@ -1,30 +1,12 @@
 import {InferActionType} from "../store";
 import {CATCH_ERROR, CLEAR_ERROR, LOG_OUT, SET_AUTH} from "./actionTypes";
 import {actions} from "./actions";
-
-
-export type AuthDataType = {
-    _id: string,
-    email: string
-    name: string
-    avatar: string
-    extra_details: string
-    skills: string
-    profession: string
-    details: string
-    dateCreated: string
-}
-
-type LoginData = {
-    email: string
-    password: string
-}
+import {commonUserType} from "../CommonDataTypes/types";
 
 const initialState = {
-    authData: null as AuthDataType | null,
+    authData: null as commonUserType | null,
     token: null as string | null,
     error: null as string | null,
-    loginData: null as LoginData | null,
 }
 
 type initialStateType = typeof initialState

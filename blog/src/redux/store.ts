@@ -2,9 +2,11 @@ import {Action, applyMiddleware, combineReducers, compose, legacy_createStore as
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import {useDispatch} from "react-redux";
 import {authReducer} from "./Login/reducer";
+import {usersReducer} from "./Users/reducer";
 
 const reducersPack = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    users: usersReducer
 })
 
 export type InferActionType<T> = T extends { [key: string]: (...args: any[]) => infer U } ? U : never
