@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+
+
+
+
+.background {
+  background: linear-gradient(180deg, #E2F6FC 14.25%, rgba(255, 255, 255, 0) 100%);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 800px;
+}
+
+
+
+.dottedLine {
+  background-image: url("assets/dottedLine.png");
+  background-size: cover;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.map > img {
+  width: 100%;
+}
+
+footer > img {
+  width: 100%;
+}
+
+

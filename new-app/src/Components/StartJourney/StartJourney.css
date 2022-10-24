@@ -1,0 +1,69 @@
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 80px;
+}
+
+.heroContainer {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.textLeft {
+    display: flex;
+    margin-top: 142px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 32px;
+}
+
+.titleBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    gap: 16px;
+}
+.text1{
+    width: 100%;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 124.5%;
+}
+
+.text2 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 27px;
+    width: 80%;
+}
+
+.illus img{
+    width: 100%;
+}
+.download img{
+    width: 136px;
+    height: 40px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 950px){
+    .heroContainer {
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 430px){
+    .text1 {
+        font-size: 40px;
+    }
+    .hero {
+        padding: 10px 20px;
+    }
+}

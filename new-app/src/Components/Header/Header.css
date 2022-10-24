@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 41px;
+}
+
+.header > span:first-child {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 140%;
+    color: #42A7C3;
+    font-family: Roboto;
+
+}
+
+.headerNav a {
+    margin-right: 80px;
+    cursor: pointer;
+}
+
+.btn {
+    height: 46px;
+    width: 120px;
+    background: rgba(250, 132, 67, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 950px){
+    .headerNav a {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 650px){
+    .header {
+        flex-direction: column;
+        margin-left: 20px;
+        margin-right: 20px;
+
+    }
+    .header > span {
+        margin-top: 20px;
+    }
+}
