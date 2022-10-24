@@ -1,5 +1,5 @@
 import {InferActionType} from "../store";
-import {CATCH_ERROR, CLEAR_ERROR, LOG_OUT, SET_AUTH, SET_LOGIN_DATA, SET_TOKEN} from "./actionTypes";
+import {CATCH_ERROR, CLEAR_ERROR, LOG_OUT, SET_AUTH} from "./actionTypes";
 import {actions} from "./actions";
 
 
@@ -24,7 +24,7 @@ const initialState = {
     authData: null as AuthDataType | null,
     token: null as string | null,
     error: null as string | null,
-    loginData: null as LoginData | null
+    loginData: null as LoginData | null,
 }
 
 type initialStateType = typeof initialState
@@ -38,11 +38,6 @@ export const authReducer = (state = initialState, action: ActionsType): initialS
             return {
                 ...state,
                 authData: action.payload.authData,
-            }
-        case SET_TOKEN:
-            return {
-                ...state,
-                token: action.payload.token,
             }
         case CATCH_ERROR:
             return {
@@ -60,11 +55,6 @@ export const authReducer = (state = initialState, action: ActionsType): initialS
                 authData: null,
                 token: null,
                 error: null
-            }
-        case SET_LOGIN_DATA:
-            return {
-                ...state,
-                loginData: action.payload
             }
         default:
             return state

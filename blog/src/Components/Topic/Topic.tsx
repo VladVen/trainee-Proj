@@ -8,7 +8,6 @@ import {actions} from "../../redux/Login/actions";
 export const Topic = () => {
 
     const dispatch = useDispatch()
-    const token = useSelector((state: AppStateType) => state.auth.token)
     const name = useSelector((state: AppStateType) => state.auth.authData?.name)
 
     const logoutHandler = () => {
@@ -39,7 +38,7 @@ export const Topic = () => {
 
                 <Button variant="contained" color='secondary'>
                     {
-                        token
+                        name
                             ? <NavLink to={'/signin'} className={style.link}
                                        onClick={logoutHandler}>
                                 Log out</NavLink>
