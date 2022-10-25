@@ -1,5 +1,5 @@
 import {CommonThunkType} from "../store";
-import {actions} from "./actions";
+import {postsActions} from "./actions";
 import {ActionsType} from "./reducer";
 import {postsAPI} from "../../API/postsAPI/postsAPI";
 
@@ -11,7 +11,7 @@ export const getMyPosts = (startValue: number): ThunkType => async (dispatch, ge
     const id = getState().auth.authData?._id
     try {
         let posts = await postsAPI.getPosts(id as string, startValue)
-        dispatch(actions.setMyPosts(posts))
+        dispatch(postsActions.setMyPosts(posts))
     } catch (e) {
         console.log(e)
     }

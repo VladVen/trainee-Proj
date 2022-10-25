@@ -10,7 +10,7 @@ import {FormField} from "../../../Components/FormField/FormField";
 import Box from "@mui/material/Box";
 import signInValidationSchema from "./validator";
 import {setLogIn} from "../../../redux/Login/thunks";
-import {actions} from "../../../redux/Login/actions";
+import {loginActions} from "../../../redux/Login/actions";
 
 
 type ValuesType = {
@@ -34,7 +34,7 @@ export const SignIn = () => {
         setSubmitting(false);
     }
     const errorCleaner = () => {
-        dispatch(actions.clearError() as unknown as AnyAction)
+        dispatch(loginActions.clearError() as unknown as AnyAction)
     }
 
     return (

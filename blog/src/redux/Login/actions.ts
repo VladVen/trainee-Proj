@@ -2,7 +2,7 @@ import {CATCH_ERROR, CLEAR_ERROR, LOG_OUT, SET_AUTH} from "./actionTypes";
 import {commonUserType} from "../CommonDataTypes/types";
 
 
-export const actions = {
+export const loginActions = {
     setAuth: (authData: commonUserType) => ({
         type: SET_AUTH,
         payload: {authData}

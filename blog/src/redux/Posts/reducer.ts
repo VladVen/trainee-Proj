@@ -1,7 +1,7 @@
 import {InferActionType} from "../store";
-import {actions} from "./actions";
+import {postsActions} from "./actions";
 import {commonPostType} from "../CommonDataTypes/types";
-import {SET_MY_POSTS} from "./actionTypes";
+import {LOG_OUT, SET_MY_POSTS} from "./actionTypes";
 
 const initialState = {
     myPosts: {
@@ -16,7 +16,7 @@ const initialState = {
 
 type initialStateType = typeof initialState
 
-export type ActionsType = InferActionType<typeof actions>
+export type ActionsType = InferActionType<typeof postsActions>
 
 
 export const postReducer = (state = initialState, action: ActionsType): initialStateType => {
@@ -33,6 +33,19 @@ export const postReducer = (state = initialState, action: ActionsType): initialS
                         total: action.payload.posts.pagination.total,
                     },
                     data: [...state.myPosts.data, ...action.payload.posts.data]
+                },
+            }
+        case LOG_OUT:
+            return {
+                ...state,
+                myPosts: {
+                    ...state.myPosts,
+                    pagination: {
+                        skip: null,
+                        limit: null,
+                        total: null,
+                    },
+                    data: []
                 },
             }
         default:

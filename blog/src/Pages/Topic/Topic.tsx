@@ -4,7 +4,7 @@ import {NavLink, useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/store";
 import {TopicMenu} from "../../Components/TopicMenu/TopicMenu";
-import {actions} from "../../redux/Login/actions";
+import {loginActions} from "../../redux/Login/actions";
 import {AnyAction} from "redux";
 
 export const Topic = () => {
@@ -13,7 +13,7 @@ export const Topic = () => {
     const dispatch = useDispatch()
 
     const errorCleaner = () => {
-        dispatch(actions.clearError() as unknown as AnyAction)
+        dispatch(loginActions.clearError() as unknown as AnyAction)
     }
 
     const location = useLocation();

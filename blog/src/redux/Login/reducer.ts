@@ -1,6 +1,6 @@
 import {InferActionType} from "../store";
 import {CATCH_ERROR, CLEAR_ERROR, LOG_OUT, SET_AUTH} from "./actionTypes";
-import {actions} from "./actions";
+import {loginActions} from "./actions";
 import {commonUserType} from "../CommonDataTypes/types";
 
 const initialState = {
@@ -10,7 +10,7 @@ const initialState = {
 
 type initialStateType = typeof initialState
 
-export type ActionsType = InferActionType<typeof actions>
+export type ActionsType = InferActionType<typeof loginActions>
 
 
 export const authReducer = (state = initialState, action: ActionsType): initialStateType => {
