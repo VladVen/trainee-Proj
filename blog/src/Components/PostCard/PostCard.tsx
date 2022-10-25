@@ -47,9 +47,11 @@ export const PostCard: React.FC<PostCardType> = ({post}) => {
       }
     }, [post.likes])
 
+    const image = post.image ? `http://test-blog-api.ficuslife.com${post.image}`: altPhoto
+
     return <Paper className={style.paper}>
         <Box>{post.title}</Box>
-        <Box><img src={post.image || altPhoto} alt={'photo'} className={style.img}/></Box>
+        <Box><img src={image} alt={'photo'} className={style.img}/></Box>
         <Box className={style.bottomSection}>
             <Box>
                 {post.description}

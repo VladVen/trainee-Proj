@@ -8,6 +8,7 @@
 .paper {
     width: 200px;
     padding: 10px;
+    margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;

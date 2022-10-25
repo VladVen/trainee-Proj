@@ -12,10 +12,13 @@ type userCardType = {
 }
 
 export const UserCard: FC<userCardType> = ({name, avatar, email, status}) => {
+
+    const img = avatar && `http://test-blog-api.ficuslife.com${avatar}`
+
     return <Paper sx={{width: '300px', height: '100px', mb: 3, display: 'flex'}}>
         <Box sx={{display: 'flex', flex: 1, justifyContent: 'flex-start', alignItems: 'center', p:'10px'}}>
             <Box >
-                <Avatar src={avatar} alt={'avatar'}
+                <Avatar src={img} alt={'avatar'}
                         sx={{width: 50, height: 50, mr: 2}}
                 />
             </Box>

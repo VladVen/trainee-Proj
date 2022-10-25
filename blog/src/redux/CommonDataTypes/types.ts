@@ -30,6 +30,15 @@ export type commonPostType = {
     postedBy: string
 }
 
+export type postsResponseType = {
+    pagination: {
+        skip: number
+        limit: number
+        total: number
+    },
+    data: commonPostType[]
+}
+
 export type createAccountType = {
     email: string,
     password: string,

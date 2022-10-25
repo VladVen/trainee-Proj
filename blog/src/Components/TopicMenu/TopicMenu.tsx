@@ -9,9 +9,10 @@ import {usersActions} from "../../redux/Users/actions";
 
 type TopicMenu = {
     name: string
+    avatar: string | undefined
 }
 
-export const TopicMenu: FC<TopicMenu> = ({name}) => {
+export const TopicMenu: FC<TopicMenu> = ({name, avatar}) => {
 
     const dispatch = useDispatch()
 
@@ -20,11 +21,14 @@ export const TopicMenu: FC<TopicMenu> = ({name}) => {
         dispatch(postsActions.logout())
         dispatch(usersActions.logout())
     }
+
+    const img = avatar && `http://test-blog-api.ficuslife.com${avatar}`
+
     return <Tooltip title={<TopicTooltip logoutHandler={logoutHandler}/>} arrow>
         <Box sx={{display: 'flex'}}>
             <Avatar
                 alt="avatar"
-                src=""
+                src={img}
                 sx={{width: 24, height: 24, mr: 2}}
             />
             <Box>{name}</Box>

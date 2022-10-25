@@ -49,8 +49,8 @@ function App() {
                     <Topic/>
                     <Routes>
                         {
-                            routes.map(({path, element, needAuth}, key) => {
-                                if (needAuth && !authData) {
+                            routes.map(({path, element, privatePage}, key) => {
+                                if (privatePage && !authData) {
                                     return <Route path={path} element={<Navigate to={'/signin'}/>} key={key}/>
                                 }
                                 return <Route path={path} element={element} key={key}/>
