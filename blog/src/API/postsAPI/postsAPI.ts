@@ -1,8 +1,8 @@
 import {instance} from "../api";
 
 export const postsAPI = {
-    getPosts(id: string) {
-        return instance.get(`posts?postedBy=${id}`)
+    getPosts(id: string, startValue: number) {
+        return instance.get(`posts?postedBy=${id}&skip=${startValue}`)
             .then(response => response.data)
     },
     addLike(id: string) {

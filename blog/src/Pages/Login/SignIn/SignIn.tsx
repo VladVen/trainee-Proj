@@ -10,6 +10,7 @@ import {FormField} from "../../../Components/FormField/FormField";
 import Box from "@mui/material/Box";
 import signInValidationSchema from "./validator";
 import {setLogIn} from "../../../redux/Login/thunks";
+import {actions} from "../../../redux/Login/actions";
 
 
 type ValuesType = {
@@ -31,6 +32,9 @@ export const SignIn = () => {
     const onSubmitHandler = async (values: ValuesType, setSubmitting: setSubmittingType ) => {
         await dispatch(setLogIn(values.email, values.password) as unknown as AnyAction)
         setSubmitting(false);
+    }
+    const errorCleaner = () => {
+        dispatch(actions.clearError() as unknown as AnyAction)
     }
 
     return (
@@ -61,7 +65,10 @@ export const SignIn = () => {
                             <Box>
                                 Don't have account ?
                                 <Button variant='contained' size='small' sx={{ml: '5px'}}>
-                                    <NavLink to={'/signup'} className={style.link}> Sign it for free</NavLink>
+                                    <NavLink to={'/signup'}
+                                             className={style.link}
+                                             onClick={errorCleaner}
+                                    > Sign it for free</NavLink>
                                 </Button>
                             </Box>
 

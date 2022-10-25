@@ -7,6 +7,7 @@ import {AnyAction} from "redux";
 import useOnScreen from "../../Components/Hooks/useOnScreen";
 import Box from "@mui/material/Box";
 import {UserCard} from "../../Components/UserCard/UserCard";
+import {Preloader} from "../../Components/Preloader/Preloader";
 
 
 export const Users = () => {
@@ -42,9 +43,7 @@ export const Users = () => {
     }, [intersecting])
 
     if (!users.data.length) {
-        return <Box sx={{mt: 4, display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <CircularProgress ref={currentElement}/>
-        </Box>
+        return <Box ref={currentElement}><Preloader /></Box>
     }
     return (
         <Box>

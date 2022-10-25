@@ -7,11 +7,11 @@ import {postsAPI} from "../../API/postsAPI/postsAPI";
 export type ThunkType = CommonThunkType<ActionsType>
 
 
-export const getMyPosts = (): ThunkType => async (dispatch, getState) => {
+export const getMyPosts = (startValue: number): ThunkType => async (dispatch, getState) => {
     const id = getState().auth.authData?._id
     try {
-        let posts = await postsAPI.getPosts(id as string)
-        dispatch(actions.setMyPosts(posts.data))
+        let posts = await postsAPI.getPosts(id as string, startValue)
+        dispatch(actions.setMyPosts(posts))
     } catch (e) {
         console.log(e)
     }

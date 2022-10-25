@@ -4,7 +4,14 @@ import {commonPostType} from "../CommonDataTypes/types";
 import {SET_MY_POSTS} from "./actionTypes";
 
 const initialState = {
-    myPosts: [] as commonPostType[],
+    myPosts: {
+        pagination: {
+            skip: null as number | null,
+            limit: null as number | null,
+            total: null as number | null,
+        },
+        data: [] as commonPostType[]
+    }
 }
 
 type initialStateType = typeof initialState
@@ -17,7 +24,16 @@ export const postReducer = (state = initialState, action: ActionsType): initialS
         case SET_MY_POSTS:
             return {
                 ...state,
-                myPosts: [...state.myPosts, ...action.payload.posts],
+                myPosts: {
+                    ...state.myPosts,
+                    pagination: {
+                        ...state.myPosts.pagination,
+                        skip: action.payload.posts.pagination.skip,
+                        limit: action.payload.posts.pagination.limit,
+                        total: action.payload.posts.pagination.total,
+                    },
+                    data: [...state.myPosts.data, ...action.payload.posts.data]
+                },
             }
         default:
             return state

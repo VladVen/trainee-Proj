@@ -7,7 +7,7 @@ import {useEffect} from "react";
 import {getMyPosts} from "../../redux/Posts/thunks";
 import {AnyAction} from "redux";
 import {MyPosts} from "./MyPosts/MyPosts";
-import {CircularProgress} from "@mui/material";
+import {Preloader} from "../../Components/Preloader/Preloader";
 
 
 export const Settings = () => {
@@ -17,16 +17,21 @@ export const Settings = () => {
     const posts = useSelector((state: AppStateType) => state.posts.myPosts)
 
     useEffect(() => {
-        dispatch(getMyPosts() as unknown as AnyAction)
+        if (posts.pagination.total === null) {
+            dispatch(getMyPosts(0) as unknown as AnyAction)
+        }
     }, [])
 
     return (
         <Box>
             <ProfileDescription authData={authData as commonUserType}/>
             {
-                !posts.length
-                    ? <CircularProgress />
-                    : <MyPosts posts={posts}/>
+                posts.pagination.total === null
+                    ? <Preloader/>
+                    : <MyPosts posts={posts.data}
+                               totalCount={posts.pagination.total}
+                               skip={posts.pagination.skip as number}
+                    />
             }
         </Box>
     )
