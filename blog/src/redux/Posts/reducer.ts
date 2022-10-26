@@ -1,7 +1,7 @@
 import {InferActionType} from "../store";
 import {postsActions} from "./actions";
 import {commonPostType} from "../CommonDataTypes/types";
-import {CLEAR_POSTS, LOG_OUT, SET_POSTS} from "./actionTypes";
+import {CLEAR_NEW_POST, CLEAR_POSTS, LOG_OUT, SAVE_NEW_POST, SET_POSTS} from "./actionTypes";
 
 const initialState = {
     posts: {
@@ -12,6 +12,7 @@ const initialState = {
         },
         data: [] as commonPostType[]
     },
+    newPost: null as commonPostType | null
 }
 
 type initialStateType = typeof initialState
@@ -35,7 +36,18 @@ export const postReducer = (state = initialState, action: ActionsType): initialS
                     data: [...state.posts.data, ...action.payload.posts.data]
                 },
             }
-        case LOG_OUT: case CLEAR_POSTS:
+        case SAVE_NEW_POST:
+            return {
+                ...state,
+                newPost: action.payload.post
+            }
+        case CLEAR_NEW_POST:
+            return {
+                ...state,
+                newPost: null
+            }
+        case LOG_OUT:
+        case CLEAR_POSTS:
             return {
                 ...state,
                 posts: {

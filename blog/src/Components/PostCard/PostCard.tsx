@@ -24,8 +24,8 @@ export const PostCard: React.FC<PostCardType> = ({post}) => {
     const id = useSelector((state: AppStateType) => state.auth.authData?._id)
 
     const likeHandler = async () => {
-        if(post.likes.length === likesCount) {
-            if(post.likes.find(item => item == id)) {
+        if (post.likes.length === likesCount) {
+            if (post.likes.find(item => item == id)) {
                 await dispatch(addLike(post._id) as unknown as AnyAction)
                 setLikesCount(prevState => prevState - 1)
                 setLikeColor('secondary')
@@ -42,18 +42,22 @@ export const PostCard: React.FC<PostCardType> = ({post}) => {
     }
 
     useEffect(() => {
-      if(post.likes.find(item => item == id)) {
-          setLikeColor('error')
-      }
+        if (post.likes.find(item => item == id)) {
+            setLikeColor('error')
+        }
     }, [post.likes])
 
-    const image = post.image ? `http://test-blog-api.ficuslife.com${post.image}`: altPhoto
+    const image = post.image ? `http://test-blog-api.ficuslife.com${post.image}` : altPhoto
 
     return <Paper className={style.paper}>
-        <Box>{post.title}</Box>
-        <Box><img src={image} alt={'photo'} className={style.img}/></Box>
+        <Box className={style.text}>
+            {post.title}
+        </Box>
+        <Box>
+            <img src={image} alt={'photo'} className={style.img}/>
+        </Box>
         <Box className={style.bottomSection}>
-            <Box>
+            <Box className={style.text}>
                 {post.description}
             </Box>
             <Button endIcon={<FavoriteIcon color={likeColor}/>}

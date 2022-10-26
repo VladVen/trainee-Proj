@@ -27,3 +27,10 @@
     align-items: center;
     justify-content: center;
 }
+
+.text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width : 150px;
+}

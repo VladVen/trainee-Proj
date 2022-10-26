@@ -27,6 +27,7 @@ export const FormField: React.FC<FieldType> = ({name, label, error,
                        setValue(name, e.currentTarget.value)
                    }}
                    value={value}
+                   sx={{background: '#FFE5B4', borderRadius: '4px'}}
                    variant="outlined"/>
         </Box>
 

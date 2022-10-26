@@ -29,6 +29,11 @@ export type commonPostType = {
     likes: string[],
     postedBy: string
 }
+export type commonAddPostType = {
+    title: string,
+    fullText: string,
+    description: string,
+}
 
 export type postsResponseType = {
     pagination: {
