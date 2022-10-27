@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/store";
-import React, {useCallback, useEffect, useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {AnyAction} from "redux";
 import useOnScreen from "../../Components/Hooks/useOnScreen";
 import Box from "@mui/material/Box";
@@ -32,9 +32,9 @@ export const Posts = () => {
     const portion = useMemo(() => posts.pagination.limit as number, [posts.pagination.limit])
     const pagesCount = useMemo(() => Math.ceil(totalCount / portion), [totalCount, portion])
 
-    const onLeaveHandler = useCallback(() => {
+    const onLeaveHandler = () => {
         dispatch(postsActions.clearPosts())
-    }, [])
+    }
 
     useEffect(() => {
         return onLeaveHandler
@@ -56,6 +56,10 @@ export const Posts = () => {
         moreHandler()
     }, [intersecting])
 
+    useEffect(() => {
+        setStartValue(0)
+    }, [openAddPhoto])
+
 
     const onOpenAddPostHandler = () => {
         setOpenAddPost(prevState => !prevState)
@@ -64,9 +68,10 @@ export const Posts = () => {
         setOpenAddPhoto(prevState => !prevState)
     }
 
-    if (!posts.data.length) {
+    if (!posts.data.length && !openAddPhoto) {
         return <Box ref={currentElement}><Preloader/></Box>
     }
+
     return (
         <Box>
             <Box sx={{position: 'fixed', bottom: 40, right: 15}}>
@@ -87,27 +92,33 @@ export const Posts = () => {
                     />
                 </SpeedDial>
             </Box>
-            <Box sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                flex: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
-                p: '5% 5% 0 5%'
-            }}>
-                {
-                    posts.data.length && posts.data.map(item => <PostCard post={item} key={item._id}/>)
-                }
-            </Box>
-            <Box>
-                {pagesCount > startValue / 10 && <Box ref={currentElement}><Preloader/></Box>}
-            </Box>
+            {
+                openAddPhoto ? <Box><Preloader/></Box>
+                    : <Box>
+                        <Box sx={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            flex: 1,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            p: '5% 5% 0 5%'
+                        }}>
+                            {
+                                posts.data.length && posts.data.map(item => <PostCard post={item} key={item._id}/>)
+                            }
+                        </Box>
+                        <Box>
+                            {pagesCount > startValue / 10 && <Box ref={currentElement}><Preloader/></Box>}
+                        </Box>
+                    </Box>
+            }
+
 
             <ModalWindow open={openAddPost} onCloseHandler={onOpenAddPostHandler}>
                 <AddPostModal onCLose={onOpenAddPostHandler}/>
             </ModalWindow>
             <ModalWindow open={openAddPhoto} onCloseHandler={onOpenAddPhotoHandler}>
-                <AddPhotoModal/>
+                <AddPhotoModal />
             </ModalWindow>
         </Box>
     )

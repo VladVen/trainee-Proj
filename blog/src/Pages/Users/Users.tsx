@@ -8,6 +8,7 @@ import useOnScreen from "../../Components/Hooks/useOnScreen";
 import Box from "@mui/material/Box";
 import {UserCard} from "../../Components/UserCard/UserCard";
 import {Preloader} from "../../Components/Preloader/Preloader";
+import {usersActions} from "../../redux/Users/actions";
 
 
 export const Users = () => {
@@ -24,6 +25,14 @@ export const Users = () => {
     const portion = useMemo(() => users.pagination.limit as number, [users.pagination.limit])
 
     const pagesCount = useMemo(() => Math.ceil( totalCount / portion), [totalCount, portion] )
+
+    const onLeaveHandler = () => {
+        dispatch(usersActions.clearUsers())
+    }
+
+    useEffect(() => {
+        return onLeaveHandler
+    }, [])
 
 
     const moreHandler = () => {

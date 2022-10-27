@@ -3,10 +3,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/store";
 import {ProfileDescription} from "./ProfileDescription/ProfileDescription";
 import {commonUserType} from "../../redux/CommonDataTypes/types";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {getPosts} from "../../redux/Posts/thunks";
 import {AnyAction} from "redux";
-import {MyPosts} from "./MyPosts/MyPosts";
+import {MyPosts} from "../../Components/MyPosts/MyPosts";
 import {Preloader} from "../../Components/Preloader/Preloader";
 
 
@@ -20,15 +20,22 @@ export const Settings = () => {
             dispatch(getPosts(0, authData?._id as string) as unknown as AnyAction)
     }, [])
 
+
     return (
         <Box>
-            <ProfileDescription authData={authData as commonUserType}/>
+            <Box sx={{mb: 10}}>
+                <ProfileDescription authData={authData as commonUserType}/>
+            </Box>
+
+            <Box sx={{display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center',}}>
+                My Posts
+            </Box>
             {
                 posts.pagination.total === null
                     ? <Preloader/>
                     : <MyPosts posts={posts.data}
                                totalCount={posts.pagination.total}
-                               skip={posts.pagination.skip as number}
+                               skip={posts.pagination.skip as number + 10}
                                myId={authData?._id as string}
                     />
             }

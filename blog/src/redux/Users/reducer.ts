@@ -1,7 +1,7 @@
 import {InferActionType} from "../store";
 import {usersActions} from "./actions";
 import {commonUserType} from "../CommonDataTypes/types";
-import {GET_USERS, LOG_OUT} from "./actionTypes";
+import {CLEAR_USERS, GET_USERS, LOG_OUT} from "./actionTypes";
 
 const initialState = {
     users: {
@@ -35,7 +35,7 @@ export const usersReducer = (state = initialState, action: ActionsType): initial
                     data: [...state.users.data, ...action.payload.users.data]
                 },
             }
-            case LOG_OUT:
+        case CLEAR_USERS: case LOG_OUT:
             return {
                 ...state,
                 users: {

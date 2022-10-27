@@ -20,7 +20,8 @@ const theme = createTheme({
             primary: '#00203FFF',
         },
         background: {
-            paper: '#f4a384'
+            paper: '#f4a384',
+            default: '#FFE5B4'
         }
     },
     components: {

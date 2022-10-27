@@ -1,5 +1,13 @@
-import {CLEAR_NEW_POST, CLEAR_POSTS, LOG_OUT, SAVE_NEW_POST, SET_POSTS} from "./actionTypes";
-import {commonPostType, postsResponseType} from "../CommonDataTypes/types";
+import {
+    CLEAR_CURRENT_POST,
+    CLEAR_NEW_POST,
+    CLEAR_POSTS,
+    LOG_OUT,
+    SAVE_NEW_POST, SET_CURRENT_COMMENTS,
+    SET_CURRENT_POST,
+    SET_POSTS
+} from "./actionTypes";
+import {commonCommentsType, commonPostType, postsResponseType} from "../CommonDataTypes/types";
 
 
 export const postsActions = {
@@ -17,6 +25,17 @@ export const postsActions = {
     } as const),
     clearNewPost: () => ({
         type: CLEAR_NEW_POST,
+    } as const),
+    setCurrentPost: (post: commonPostType) => ({
+        type: SET_CURRENT_POST,
+        payload: {post}
+    } as const),
+    setCurrentComments: (comments: commonCommentsType[]) => ({
+        type: SET_CURRENT_COMMENTS,
+        payload: {comments}
+    } as const),
+    clearCurrentPost: () => ({
+        type: CLEAR_CURRENT_POST,
     } as const),
     logout: () => ({
         type: LOG_OUT,

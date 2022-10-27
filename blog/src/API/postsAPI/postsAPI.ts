@@ -19,9 +19,16 @@ export const postsAPI = {
             }
         })
     },
-
     addLike(id: string) {
         return instance.put(`posts/like/${id}`)
+            .then(response => response.data)
+    },
+    getCurrentPost(id: string) {
+        return instance.get(`posts/${id}`)
+            .then(response => response.data)
+    },
+    getCurrentComments(id: string) {
+        return instance.get(`comments/post/${id}`)
             .then(response => response.data)
     },
 }

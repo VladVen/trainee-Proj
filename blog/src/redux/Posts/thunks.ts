@@ -43,7 +43,23 @@ export const addPhoto = (img: File): ThunkType => async (dispatch, getState) => 
         dispatch(postsActions.clearNewPost())
     }
 }
+export const getCurrentPost = (id: string): ThunkType => async (dispatch) => {
+    try {
+       const post = await postsAPI.getCurrentPost(id)
+        dispatch(postsActions.setCurrentPost(post))
+    } catch (e) {
+        console.log(e)
+    }
+}
 
+export const getCurrentComments = (id: string): ThunkType => async (dispatch) => {
+    try {
+        const comments = await postsAPI.getCurrentComments(id)
+        dispatch(postsActions.setCurrentComments(comments))
+    } catch (e) {
+        console.log(e)
+    }
+}
 
 
 
