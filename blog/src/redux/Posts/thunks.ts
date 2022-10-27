@@ -33,10 +33,9 @@ export const addPost = (post: commonAddPostType): ThunkType => async (dispatch) 
         console.log(e)
     }
 }
-export const addPhoto = (img: File): ThunkType => async (dispatch, getState) => {
-    const id = getState().posts.newPost?._id
+export const addPhoto = (img: File, id: string): ThunkType => async (dispatch) => {
     try {
-        await postsAPI.addPhoto(img, id as string)
+        await postsAPI.addPhoto(img, id )
     } catch (e) {
         console.log(e)
     } finally {

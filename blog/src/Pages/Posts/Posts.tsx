@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/store";
 import React, {useEffect, useMemo, useState} from "react";
 import {AnyAction} from "redux";
-import useOnScreen from "../../Components/Hooks/useOnScreen";
+import useOnScreen from "../../Hooks/useOnScreen";
 import Box from "@mui/material/Box";
 import {Preloader} from "../../Components/Preloader/Preloader";
 import {PostCard} from "../../Components/PostCard/PostCard";

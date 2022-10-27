@@ -4,7 +4,7 @@ import {AppStateType} from "../../redux/store";
 import {useEffect, useMemo, useState} from "react";
 import {getUsers} from "../../redux/Users/thunks";
 import {AnyAction} from "redux";
-import useOnScreen from "../../Components/Hooks/useOnScreen";
+import useOnScreen from "../../Hooks/useOnScreen";
 import Box from "@mui/material/Box";
 import {UserCard} from "../../Components/UserCard/UserCard";
 import {Preloader} from "../../Components/Preloader/Preloader";

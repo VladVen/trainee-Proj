@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import React, {useCallback, useEffect, useMemo, useState} from "react";
 import {commonPostType} from "../../redux/CommonDataTypes/types";
 import {PostCard} from "../PostCard/PostCard";
-import useOnScreen from "../Hooks/useOnScreen";
+import useOnScreen from "../../Hooks/useOnScreen";
 import {AnyAction} from "redux";
 import {useDispatch} from "react-redux";
 import {getPosts} from "../../redux/Posts/thunks";

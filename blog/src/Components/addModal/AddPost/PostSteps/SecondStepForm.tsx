@@ -3,9 +3,10 @@ import React, {ChangeEvent, useState} from "react";
 import {Button} from "@mui/material";
 import {Form, Formik, FormikValues} from "formik";
 import style from "../addPost.module.css";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addPhoto} from "../../../../redux/Posts/thunks";
 import {AnyAction} from "redux";
+import {AppStateType} from "../../../../redux/store";
 
 
 const initialValues = {file: ''}
@@ -18,9 +19,10 @@ export const SecondStepForm: React.FC<SecondStepFormType> = ({onCLose}) => {
 
     const [image, setImage] = useState<null | string>(null)
     const dispatch = useDispatch()
+    const postId = useSelector((state: AppStateType) => state.posts.newPost?._id )
 
     const submitHandler = async (values: FormikValues, setSubmitting: (status: boolean) => void) => {
-        await dispatch(addPhoto(values.file) as unknown as AnyAction)
+        await dispatch(addPhoto(values.file, postId as string) as unknown as AnyAction)
         setSubmitting(false)
         onCLose()
     }

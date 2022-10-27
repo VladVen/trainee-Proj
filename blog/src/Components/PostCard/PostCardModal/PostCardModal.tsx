@@ -10,6 +10,7 @@ import {AnyAction} from "redux";
 import {postsActions} from "../../../redux/Posts/actions";
 import {Like} from "../../Like/Like";
 import {Comment} from "../../Comment/Comment";
+import {PhotoChange} from "../PhotoChange/PhotoChange";
 
 
 type PostCardModalType = {
@@ -72,10 +73,9 @@ export const PostCardModal: React.FC<PostCardModalType> = ({
                     flex: 1,
                     justifyContent: 'center',
                     alignItems: 'center'
-                }}> <Button variant={'contained'}
-                            color={'secondary'}>
-                    Change
-                </Button> </Box>
+                }}>
+                    <PhotoChange postId={post._id}/>
+                </Box>
                 : <img src={image} style={{width: '50%', height: '50%'}} alt={'Post image'}/>
         }
 
@@ -91,7 +91,7 @@ export const PostCardModal: React.FC<PostCardModalType> = ({
                 ? <Box sx={{overflowY: 'auto', height: '200px'}}>
                     {[...comments]
                         .reverse()
-                        .map(item => <Comment comment={item} key={item._id} />)} </Box>
+                        .map(item => <Comment comment={item} key={item._id}/>)} </Box>
                 : null
         }
 
