@@ -2,6 +2,7 @@ import {InferActionType} from "../store";
 import {postsActions} from "./actions";
 import {commonCommentsType, commonPostType} from "../CommonDataTypes/types";
 import {
+    ADD_NEW_COMMENT,
     CLEAR_CURRENT_POST,
     CLEAR_NEW_POST,
     CLEAR_POSTS,
@@ -83,6 +84,14 @@ export const postReducer = (state = initialState, action: ActionsType): initialS
                     ...state.currentPost,
                     post: null,
                     comments: []
+                }
+            }
+            case ADD_NEW_COMMENT:
+            return {
+                ...state,
+                currentPost: {
+                    ...state.currentPost,
+                    comments: [...state.currentPost.comments, action.payload.comment]
                 }
             }
         case LOG_OUT:

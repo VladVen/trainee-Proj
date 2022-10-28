@@ -1,4 +1,5 @@
 import {
+    ADD_NEW_COMMENT,
     CLEAR_CURRENT_POST,
     CLEAR_NEW_POST,
     CLEAR_POSTS,
@@ -36,6 +37,10 @@ export const postsActions = {
     } as const),
     clearCurrentPost: () => ({
         type: CLEAR_CURRENT_POST,
+    } as const),
+    addNewComment: (comment: commonCommentsType) => ({
+        type: ADD_NEW_COMMENT,
+        payload: {comment}
     } as const),
     logout: () => ({
         type: LOG_OUT,

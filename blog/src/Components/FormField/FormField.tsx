@@ -15,7 +15,7 @@ type FieldType = {
 export const FormField: React.FC<FieldType> = ({name, label, error,
                                                    value, setValue, ...restProps}) => {
     return (
-        <Box sx={{display: 'flex', flex: 1, flexDirection: 'column', width: '350px'}}>
+        <Box sx={{display: 'flex', flex: 1, flexDirection: 'column', minWidth: '350px'}}>
             <Field {...restProps}
                    name={name} component={TextField}
                    id={name} label={label}

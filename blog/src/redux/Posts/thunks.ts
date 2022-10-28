@@ -24,6 +24,13 @@ export const addLike = (id: string): ThunkType => async () => {
         console.log(e)
     }
 }
+export const addCommentLike = (id: string): ThunkType => async () => {
+    try {
+        await postsAPI.addCommentLike(id)
+    } catch (e) {
+        console.log(e)
+    }
+}
 
 export const addPost = (post: commonAddPostType): ThunkType => async (dispatch) => {
     try {
@@ -55,6 +62,15 @@ export const getCurrentComments = (id: string): ThunkType => async (dispatch) =>
     try {
         const comments = await postsAPI.getCurrentComments(id)
         dispatch(postsActions.setCurrentComments(comments))
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const addNewComment = (id: string, message: string, followedId: string | null): ThunkType => async (dispatch) => {
+    try {
+        const comment = await postsAPI.setNewComment(id, message, followedId)
+        dispatch(postsActions.addNewComment(comment))
     } catch (e) {
         console.log(e)
     }

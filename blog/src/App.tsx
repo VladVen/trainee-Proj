@@ -1,11 +1,11 @@
 import './App.css';
 import {Navigate, Route, Routes} from "react-router-dom";
-import {Topic} from "./Pages/Topic/Topic";
+import {Topic} from "./Components/Topic/Topic";
 import {createTheme, ThemeProvider} from "@mui/material";
 import {routes} from "./Routes/routes";
 import {useSelector} from "react-redux";
 import {AppStateType} from "./redux/store";
-import {Footer} from "./Pages/Footer/Footer";
+import {Footer} from "./Components/Footer/Footer";
 import Box from "@mui/material/Box";
 
 const theme = createTheme({

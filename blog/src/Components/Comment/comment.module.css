@@ -1,0 +1,18 @@
+
+
+
+.ava {
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+.comment {
+    margin-left: 40px;
+}
+.bottomBtn {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+
+}

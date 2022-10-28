@@ -10,6 +10,6 @@ export const SET_CURRENT_POST = 'posts/SET_CURRENT_POST'
 export const SET_CURRENT_COMMENTS = 'posts/SET_CURRENT_COMMENTS'
 export const CLEAR_CURRENT_POST = 'posts/CLEAR_CURRENT_POST'
 
-
+export const ADD_NEW_COMMENT = 'posts/ADD_NEW_COMMENT'
 
 export const LOG_OUT = 'posts/LOG_OUT'

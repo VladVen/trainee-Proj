@@ -1,0 +1,31 @@
+
+.btnContainer {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.replyContainer {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+}
+.reply {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    color: #FFE5B4;
+}
+
+.comment {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment > div {
+    margin-left: 10px;
+}

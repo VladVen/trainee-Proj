@@ -9,7 +9,7 @@ import {PostCardModal} from "./PostCardModal/PostCardModal";
 import {Like} from "../Like/Like";
 import {useDispatch} from "react-redux";
 import {AnyAction} from "redux";
-import {addLike} from "../../redux/Posts/thunks";
+import {addCommentLike, addLike} from "../../redux/Posts/thunks";
 
 type PostCardType = {
     post: commonPostType
@@ -30,7 +30,7 @@ export const PostCard: React.FC<PostCardType> = ({post, altStyle = false}) => {
         await dispatch(addLike(id) as unknown as AnyAction)
     }
     const commentLikeHandler = async (id: string) => {
-        await dispatch(addLike(id) as unknown as AnyAction)
+        await dispatch(addCommentLike(id) as unknown as AnyAction)
     }
 
 

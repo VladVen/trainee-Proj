@@ -3,7 +3,7 @@ import {Button} from "@mui/material";
 import {NavLink, useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/store";
-import {TopicMenu} from "../../Components/TopicMenu/TopicMenu";
+import {TopicMenu} from "../TopicMenu/TopicMenu";
 import {loginActions} from "../../redux/Login/actions";
 import {AnyAction} from "redux";
 
@@ -53,15 +53,15 @@ export const Topic = () => {
                     {
                         name
                             ? <TopicMenu name={name} avatar={avatar}/>
-                            : location.pathname === '/signin'
-                                ? <NavLink to={'/signup'}
-                                           className={style.link}
-                                           onClick={errorCleaner}
-                                >Sign Up </NavLink>
-                                : <NavLink to={'/signin'}
+                            : location.pathname === '/signup'
+                                ? <NavLink to={'/signin'}
                                            className={style.link}
                                            onClick={errorCleaner}
                                 >Sign In </NavLink>
+                                : <NavLink to={'/signup'}
+                                           className={style.link}
+                                           onClick={errorCleaner}
+                                >Sign Up </NavLink>
                     }
 
 
