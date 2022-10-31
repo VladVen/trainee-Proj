@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AnyAction} from "redux";
 import Box from "@mui/material/Box";
 import {AppStateType} from "../../../redux/store";
-import {LoginFormField} from "../../../Components/LoginFormField/LoginFormField";
+import {FormField} from "../../../Components/FormField/FormField";
 import signUpValidationSchema from "./validator";
 import {setRegister} from "../../../redux/Login/thunks";
 
@@ -49,31 +49,31 @@ export const SingUpForm: React.FC<SingUpFormType> = ({activeStep, handleBack, ha
                         <div className={style.form}>
                             {
                                 activeStep === 0 && <>
-                                    <LoginFormField name={'name'} label={'Name'} error={errors.name}
-                                                    value={values.name} setValue={setFieldValue}/>
-                                    <LoginFormField name={'email'} label={'Email'} error={errors.email}
-                                                    value={values.email} setValue={setFieldValue}/>
-                                    <LoginFormField name={'password'} label={'Password'} error={errors.password}
-                                                    value={values.password} setValue={setFieldValue}
+                                    <FormField name={'name'} label={'Name'} error={errors.name}
+                                               value={values.name} setValue={setFieldValue}/>
+                                    <FormField name={'email'} label={'Email'} error={errors.email}
+                                               value={values.email} setValue={setFieldValue}/>
+                                    <FormField name={'password'} label={'Password'} error={errors.password}
+                                               value={values.password} setValue={setFieldValue}
                                     />
                                 </>
 
                             }
                             {
                                 activeStep === 1 && <>
-                                    <LoginFormField name={'extra_details'} label={'Extra Details'} error={errors.extra_details}
-                                                    value={values.extra_details} setValue={setFieldValue}/>
+                                    <FormField name={'extra_details'} label={'Extra Details'} error={errors.extra_details}
+                                               value={values.extra_details} setValue={setFieldValue}/>
                                 </>
 
                             }
                             {
                                 activeStep === 2 && <>
-                                    <LoginFormField name={'skills'} label={'Skills'} error={errors.skills}
-                                                    value={values.skills} setValue={setFieldValue}/>
-                                    <LoginFormField name={'profession'} label={'Profession'} error={errors.profession}
-                                                    value={values.profession} setValue={setFieldValue}/>
-                                    <LoginFormField name={'details'} label={'Details'} error={errors.details}
-                                                    value={values.details} setValue={setFieldValue}/>
+                                    <FormField name={'skills'} label={'Skills'} error={errors.skills}
+                                               value={values.skills} setValue={setFieldValue}/>
+                                    <FormField name={'profession'} label={'Profession'} error={errors.profession}
+                                               value={values.profession} setValue={setFieldValue}/>
+                                    <FormField name={'details'} label={'Details'} error={errors.details}
+                                               value={values.details} setValue={setFieldValue}/>
                                 </>
 
                             }

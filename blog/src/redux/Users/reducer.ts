@@ -1,16 +1,22 @@
 import {InferActionType} from "../store";
-import {actions} from "./actions";
+import {usersActions} from "./actions";
 import {commonUserType} from "../CommonDataTypes/types";
-import {GET_USERS} from "./actionTypes";
+import {GET_USERS, LOG_OUT} from "./actionTypes";
 
 const initialState = {
-    users: [] as commonUserType[]
-
+    users: {
+        pagination: {
+            skip: null as number | null,
+            limit: null as number | null,
+            total: null as number | null,
+        },
+        data: [] as commonUserType[]
+    }
 }
 
 type initialStateType = typeof initialState
 
-export type ActionsType = InferActionType<typeof actions>
+export type ActionsType = InferActionType<typeof usersActions>
 
 
 export const usersReducer = (state = initialState, action: ActionsType): initialStateType => {
@@ -18,7 +24,29 @@ export const usersReducer = (state = initialState, action: ActionsType): initial
         case GET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.payload.users],
+                users: {
+                    ...state.users,
+                    pagination: {
+                        ...state.users.pagination,
+                        skip: action.payload.users.pagination.skip,
+                        limit: action.payload.users.pagination.limit,
+                        total: action.payload.users.pagination.total,
+                    },
+                    data: [...state.users.data, ...action.payload.users.data]
+                },
+            }
+            case LOG_OUT:
+            return {
+                ...state,
+                users: {
+                    ...state.users,
+                    pagination: {
+                        skip: null,
+                        limit: null,
+                        total: null,
+                    },
+                    data: []
+                },
             }
         default:
             return state

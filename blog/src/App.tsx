@@ -1,5 +1,5 @@
 import './App.css';
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import {Topic} from "./Pages/Topic/Topic";
 import {createTheme, ThemeProvider} from "@mui/material";
 import {routes} from "./Routes/routes";
@@ -43,15 +43,15 @@ function App() {
     const authData = useSelector((state: AppStateType) => state.auth.authData)
 
     return (
-        <ThemeProvider theme={theme} >
+        <ThemeProvider theme={theme}>
             <div className="App">
                 <Box sx={{mb: '30px'}}>
                     <Topic/>
                     <Routes>
                         {
                             routes.map(({path, element, needAuth}, key) => {
-                                if(needAuth && !authData) {
-                                    return <Route path={'/'} element={element} key={key}/>
+                                if (needAuth && !authData) {
+                                    return <Route path={path} element={<Navigate to={'/signin'}/>} key={key}/>
                                 }
                                 return <Route path={path} element={element} key={key}/>
                             })

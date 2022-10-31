@@ -3,10 +3,12 @@ import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import {useDispatch} from "react-redux";
 import {authReducer} from "./Login/reducer";
 import {usersReducer} from "./Users/reducer";
+import {postReducer} from "./Posts/reducer";
 
 const reducersPack = combineReducers({
     auth: authReducer,
-    users: usersReducer
+    users: usersReducer,
+    posts: postReducer
 })
 
 export type InferActionType<T> = T extends { [key: string]: (...args: any[]) => infer U } ? U : never

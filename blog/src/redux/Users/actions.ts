@@ -1,11 +1,14 @@
-import {commonUserType} from "../CommonDataTypes/types";
-import {GET_USERS} from "./actionTypes";
+import {usersResponseType} from "../CommonDataTypes/types";
+import {GET_USERS, LOG_OUT} from "./actionTypes";
 
 
-export const actions = {
-    getUsers : (users: commonUserType[]) => ({
+export const usersActions = {
+    getUsers : (users: usersResponseType) => ({
         type: GET_USERS,
         payload: {users}
+    } as const),
+    logout : () => ({
+        type: LOG_OUT,
     } as const),
 
 }
