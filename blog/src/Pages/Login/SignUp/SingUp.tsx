@@ -10,6 +10,8 @@ import {Navigate} from "react-router-dom";
 
 const steps = ['Register', 'Extra Details', 'About you'];
 
+const containerStyles = {display: 'flex', flex: 1, alignItems: 'center', flexDirection: 'column', marginTop: '40px'};
+
 export const SingUp = () => {
     const [activeStep, setActiveStep] = useState(0);
 
@@ -28,7 +30,7 @@ export const SingUp = () => {
     };
 
     return (
-        <Box sx={{display: 'flex', flex: 1, alignItems: 'center', flexDirection: 'column', marginTop: '40px'}}>
+        <Box sx={containerStyles}>
             <Stepper activeStep={activeStep}>
                 {steps.map((label) => {
                     const stepProps: { completed?: boolean } = {};
