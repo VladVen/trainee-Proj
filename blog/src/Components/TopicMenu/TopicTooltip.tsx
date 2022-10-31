@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import {Button} from "@mui/material";
-import style from "../../Pages/Topic/topic.module.css";
+import style from "../Topic/topic.module.css";
 import {NavLink} from "react-router-dom";
 import {FC} from "react";
 

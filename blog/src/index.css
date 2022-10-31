@@ -9,6 +9,18 @@ body {
 
 }
 
+::-webkit-scrollbar {
+  background-color: #FFE5B4;
+  margin-top: 70px;
+  width: 10px;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #f4a384;
+  border-radius: 10px;
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

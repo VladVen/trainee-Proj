@@ -25,15 +25,18 @@ export const ProfileDescription: React.FC<ProfileDescriptionType> = ({authData})
         setOpenEdit(prevState => !prevState)
     }
 
+    const img = authData.avatar && `http://test-blog-api.ficuslife.com${authData.avatar}`
 
-  return <Box sx={{display: 'flex', flexDirection: 'column', flex: 1, pl: 10, pr: 10, pt: 5}}>
+
+    return <Box sx={{display: 'flex', flexDirection: 'column', flex: 1, pl: 10, pr: 10, pt: 5}}>
       <Box sx={{mb: 5, fontWeight: '500', fontSize: '25px'}}>
           Profile Settings
       </Box>
       <Box sx={{display: 'flex', justifyContent: 'space-between', flex: 1}}>
           <Box sx={{display: 'flex', alignItems: 'center'}}>
               <Box>
-                  <Avatar src=''
+                  <Avatar src={img}
+                          alt={'avatar'}
                           sx={{width: '100px', height: '100px', mr: 3}}
                   />
               </Box>

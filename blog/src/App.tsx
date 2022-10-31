@@ -1,11 +1,11 @@
 import './App.css';
 import {Navigate, Route, Routes} from "react-router-dom";
-import {Topic} from "./Pages/Topic/Topic";
+import {Topic} from "./Components/Topic/Topic";
 import {createTheme, ThemeProvider} from "@mui/material";
 import {routes} from "./Routes/routes";
 import {useSelector} from "react-redux";
 import {AppStateType} from "./redux/store";
-import {Footer} from "./Pages/Footer/Footer";
+import {Footer} from "./Components/Footer/Footer";
 import Box from "@mui/material/Box";
 
 const theme = createTheme({
@@ -20,7 +20,8 @@ const theme = createTheme({
             primary: '#00203FFF',
         },
         background: {
-            paper: '#f4a384'
+            paper: '#f4a384',
+            default: '#FFE5B4'
         }
     },
     components: {
@@ -49,8 +50,8 @@ function App() {
                     <Topic/>
                     <Routes>
                         {
-                            routes.map(({path, element, needAuth}, key) => {
-                                if (needAuth && !authData) {
+                            routes.map(({path, element, privatePage}, key) => {
+                                if (privatePage && !authData) {
                                     return <Route path={path} element={<Navigate to={'/signin'}/>} key={key}/>
                                 }
                                 return <Route path={path} element={element} key={key}/>

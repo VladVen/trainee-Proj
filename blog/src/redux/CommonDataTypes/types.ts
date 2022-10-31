@@ -29,6 +29,20 @@ export type commonPostType = {
     likes: string[],
     postedBy: string
 }
+export type commonAddPostType = {
+    title: string,
+    fullText: string,
+    description: string,
+}
+
+export type postsResponseType = {
+    pagination: {
+        skip: number
+        limit: number
+        total: number
+    },
+    data: commonPostType[]
+}
 
 export type createAccountType = {
     email: string,
@@ -45,4 +59,14 @@ export type updateAccountType = {
     skills: string,
     profession: string,
     details: string
+}
+
+export type commonCommentsType = {
+    _id: string,
+    commentedBy: string,
+    followedCommentID: string,
+    postID: string,
+    text: string,
+    dateCreated: string,
+    likes: string[]
 }

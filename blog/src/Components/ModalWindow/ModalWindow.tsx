@@ -11,11 +11,17 @@ type DeleteModalType = {
 
 export const ModalWindow: React.FC<DeleteModalType> = ({open, onCloseHandler, children}) => {
 
+
+
     return <Modal
         open={open}
         onClose={onCloseHandler}
     >
-        <Paper className={style.paper}>
+        <Paper className={style.paper}
+               onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+                   event.stopPropagation()
+               }}
+        >
             {children}
         </Paper>
 

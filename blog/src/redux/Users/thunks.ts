@@ -17,5 +17,3 @@ export const getUsers = (startValue: number): ThunkType => async (dispatch) => {
 }
 
 
-
-
