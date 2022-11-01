@@ -1,31 +1,30 @@
-
 .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    background-color: #f4a384;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: #f4a384;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .leftRightSide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .leftRightSide > div {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 .signIn {
-    background-color: #FFE5B4 !important;
-    border-radius: 10px !important;
+  background-color: #ffe5b4 !important;
+  border-radius: 10px !important;
 }
 
 .link {
-    text-decoration: none;
-    color: black !important;
+  text-decoration: none;
+  color: black !important;
 }

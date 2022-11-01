@@ -1,18 +1,10 @@
-
-
-
-.ava {
-    display: flex;
-    flex: 1;
-    align-items: center;
-}
 .comment {
-    margin-left: 40px;
+  margin-left: 40px;
+  font-size: small;
 }
 .bottomBtn {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: space-between;
-
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
 }

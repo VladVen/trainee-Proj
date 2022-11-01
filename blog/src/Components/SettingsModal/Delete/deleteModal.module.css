@@ -1,14 +1,12 @@
-
-
 .title {
-    display: flex;
-    flex: 1;
-    justify-content: center;
+  display: flex;
+  flex: 1;
+  justify-content: center;
 }
 
 .buttonContainer {
-    margin-top: 20px;
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
+  margin-top: 20px;
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
 }
