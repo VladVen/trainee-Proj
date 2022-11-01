@@ -1,5 +1,5 @@
 import { SignIn } from '../Pages/Login/SignIn/SignIn';
-import { MainPage } from '../Pages/Blog/MainPage';
+import { BlogPage } from '../Pages/Blog/BlogPage';
 import { SingUp } from '../Pages/Login/SignUp/SingUp';
 import { ErrorPath } from '../Pages/ErrorPath/ErrorPath';
 import { Settings } from '../Pages/Settings/Settings';
@@ -12,10 +12,14 @@ export const routes = [
     element: <SignIn />,
     privatePage: false,
   },
-
   {
     path: '/blog',
-    element: <MainPage />,
+    element: <BlogPage />,
+    privatePage: true,
+  },
+  {
+    path: '/blog/*',
+    element: <BlogPage />,
     privatePage: true,
   },
   {

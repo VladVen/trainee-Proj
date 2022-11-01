@@ -9,6 +9,7 @@ import { postsActions } from '../../redux/Posts/actions';
 import style from './myPosts.module.css';
 import { Pagination } from '@mui/material';
 import { Preloader } from '../Preloader/Preloader';
+import { useLocation } from 'react-router-dom';
 
 type MyPostsType = {
   posts: commonPostType[];
@@ -18,6 +19,8 @@ type MyPostsType = {
 };
 
 export const MyPosts: React.FC<MyPostsType> = ({ posts, totalCount, myId, altCardStyle = false }) => {
+  const location = useLocation();
+
   const dispatch = useDispatch();
 
   const [page, setPage] = React.useState(1);
@@ -43,25 +46,32 @@ export const MyPosts: React.FC<MyPostsType> = ({ posts, totalCount, myId, altCar
     return onLeaveHandler;
   }, []);
 
-  if (!totalCount) return <Preloader />;
+  if (totalCount === null) return <Preloader />;
+
+  const noPostsLabel =
+    location.pathname !== '/blog' || '/settings' ? (
+      <div>Look's like this user hadn't post any yet</div>
+    ) : (
+      <div>It seems like you haven't posts, make some one</div>
+    );
 
   return (
     <Box className={style.container}>
       <Box className={style.posts}>
-        {posts.length ? (
-          posts.map((item) => <PostCard post={item} key={item._id} altStyle={altCardStyle} />)
-        ) : (
-          <div>It seems like you haven't posts, make some one</div>
-        )}
+        {posts.length
+          ? posts.map((item) => <PostCard post={item} key={item._id} altStyle={altCardStyle} />)
+          : noPostsLabel}
       </Box>
-      <Box sx={{ pt: 5, pb: 3 }}>
-        <Pagination
-          count={pagesCount}
-          color={altCardStyle ? 'secondary' : 'primary'}
-          onChange={handleChange}
-          page={page}
-        />
-      </Box>
+      {posts.length ? (
+        <Box sx={{ pt: 5, pb: 3 }}>
+          <Pagination
+            count={pagesCount}
+            color={altCardStyle ? 'secondary' : 'primary'}
+            onChange={handleChange}
+            page={page}
+          />
+        </Box>
+      ) : null}
     </Box>
   );
 };

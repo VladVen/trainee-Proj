@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 5% 5% 0 5%;
+}
+.title {
+    margin-bottom: 3%;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.itemsPosition {
+    display: flex;
+    justify-content: space-between;
+    flex: 1 ;
+}
