@@ -71,3 +71,9 @@ export type commonCommentsType = {
   dateCreated: string;
   likes: string[];
 };
+
+export type addPostValuesType = {
+  title: string;
+  fullText: string;
+  description: string;
+};

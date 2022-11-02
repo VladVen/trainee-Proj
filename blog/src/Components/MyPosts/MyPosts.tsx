@@ -44,7 +44,7 @@ export const MyPosts: React.FC<MyPostsType> = ({ posts, totalCount, myId, altCar
 
   useEffect(() => {
     return onLeaveHandler;
-  }, []);
+  }, [location.pathname]);
 
   if (totalCount === null) return <Preloader />;
 

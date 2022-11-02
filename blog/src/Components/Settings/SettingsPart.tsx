@@ -3,9 +3,12 @@ import { Button } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
-import { DeleteModal } from './Delete/DeleteModal';
+import { DeleteModal } from '../DeleteModal/DeleteModal';
 import { EditModal } from './Edit/EditModal';
 import { commonUserType } from '../../redux/CommonDataTypes/types';
+import { useDispatch } from 'react-redux';
+import { deleteAccount } from '../../redux/Login/thunks';
+import { AnyAction } from 'redux';
 
 type SettingsPartType = {
   profileData: commonUserType;
@@ -14,6 +17,7 @@ type SettingsPartType = {
 export const SettingsPart: React.FC<SettingsPartType> = ({ profileData }) => {
   const [openDelete, setOpenDelete] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
+  const dispatch = useDispatch();
 
   const onOpenDeleteHandler = () => {
     setOpenDelete((prevState) => !prevState);
@@ -22,6 +26,13 @@ export const SettingsPart: React.FC<SettingsPartType> = ({ profileData }) => {
   const onOpenEditHandler = () => {
     setOpenEdit((prevState) => !prevState);
   };
+
+  const deleteHandler = () => {
+    dispatch(deleteAccount() as unknown as AnyAction);
+    onOpenDeleteHandler();
+  };
+
+  const title = 'Are you sure to delete this account ?';
 
   return (
     <Box>
@@ -35,7 +46,7 @@ export const SettingsPart: React.FC<SettingsPartType> = ({ profileData }) => {
       </Box>
 
       <ModalWindow open={openDelete} onCloseHandler={onOpenDeleteHandler}>
-        <DeleteModal onCloseHandler={onOpenDeleteHandler} />
+        <DeleteModal title={title} onCloseHandler={onOpenDeleteHandler} deleteHandler={deleteHandler} />
       </ModalWindow>
 
       <ModalWindow open={openEdit} onCloseHandler={onOpenEditHandler}>

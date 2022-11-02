@@ -38,12 +38,12 @@ export const usersReducer = (state = initialState, action: ActionsType): initial
     case GET_CURRENT_USER:
       return {
         ...state,
-        currentUser: action.payload.user
+        currentUser: action.payload.user,
       };
-      case CLEAR_CURRENT_USER:
+    case CLEAR_CURRENT_USER:
       return {
         ...state,
-        currentUser: null
+        currentUser: null,
       };
     case CLEAR_USERS:
     case LOG_OUT:

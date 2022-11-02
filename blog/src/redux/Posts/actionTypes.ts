@@ -12,6 +12,8 @@ export const CLEAR_CURRENT_POST = 'posts/CLEAR_CURRENT_POST';
 export const ADD_NEW_COMMENT = 'posts/ADD_NEW_COMMENT';
 
 export const ADD_LIKE = 'posts/ADD_LIKE';
-export const remove_LIKE = 'posts/ADD_LIKE';
+
+export const ADD_PHOTO = 'posts/ADD_PHOTO';
+export const EDIT_POST = 'posts/EDIT_POST';
 
 export const LOG_OUT = 'posts/LOG_OUT';

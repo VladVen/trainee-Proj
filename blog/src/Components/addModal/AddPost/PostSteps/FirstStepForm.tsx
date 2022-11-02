@@ -3,26 +3,26 @@ import { Form, Formik } from 'formik';
 import style from '../addPost.module.css';
 import { Button } from '@mui/material';
 import React from 'react';
-import { addPost } from '../../../../redux/Posts/thunks';
-import { useDispatch } from 'react-redux';
-import { AnyAction } from 'redux';
 import addPostValidationSchema from '../validator';
 import { FormField } from '../../../FormField/FormField';
+import { addPostValuesType } from '../../../../redux/CommonDataTypes/types';
 
 type AddPostModalType = {
   onCLose: () => void;
-  handleNext: () => void;
+  onSubmit: (values: addPostValuesType) => void;
+  values?: addPostValuesType;
 };
-const initialValues = { title: '', fullText: '', description: '' };
-type initialValuesType = typeof initialValues;
 
-export const FirstStepForm: React.FC<AddPostModalType> = ({ onCLose, handleNext }) => {
-  const dispatch = useDispatch();
+export const FirstStepForm: React.FC<AddPostModalType> = ({ onCLose, onSubmit, values = null }) => {
+  const initialValues = {
+    title: values?.title || '',
+    fullText: values?.fullText || '',
+    description: values?.description || '',
+  };
 
-  const onSubmitHandler = async (values: initialValuesType, setSubmitting: (status: boolean) => void) => {
-    await dispatch(addPost(values) as unknown as AnyAction);
+  const onSubmitHandler = async (values: addPostValuesType, setSubmitting: (status: boolean) => void) => {
+    await onSubmit(values);
     setSubmitting(false);
-    handleNext();
   };
 
   return (
@@ -69,6 +69,7 @@ export const FirstStepForm: React.FC<AddPostModalType> = ({ onCLose, handleNext 
                   touched={touched.fullText}
                   value={values.fullText}
                   setValue={setValue}
+                  multiline
                   color={'text'}
                 />
 

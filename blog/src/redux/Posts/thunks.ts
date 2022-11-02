@@ -2,7 +2,7 @@ import { CommonThunkType } from '../store';
 import { postsActions } from './actions';
 import { ActionsType } from './reducer';
 import { postsAPI } from '../../API/postsAPI/postsAPI';
-import { commonAddPostType } from '../CommonDataTypes/types';
+import { addPostValuesType, commonAddPostType } from '../CommonDataTypes/types';
 
 export type ThunkType = CommonThunkType<ActionsType>;
 
@@ -52,7 +52,21 @@ export const addPhoto =
   (img: File, id: string): ThunkType =>
   async (dispatch) => {
     try {
-      await postsAPI.addPhoto(img, id);
+      const updatedPost = await postsAPI.addPhoto(img, id);
+      dispatch(postsActions.addPhoto(updatedPost));
+    } catch (e) {
+      console.log(e);
+    } finally {
+      dispatch(postsActions.clearNewPost());
+    }
+  };
+export const editPost =
+  (values: addPostValuesType, id: string): ThunkType =>
+  async (dispatch) => {
+    try {
+      const updatedPost = await postsAPI.editPost(values, id);
+      dispatch(postsActions.editPost(updatedPost));
+      dispatch(postsActions.setCurrentPost(updatedPost));
     } catch (e) {
       console.log(e);
     } finally {
@@ -87,6 +101,19 @@ export const addNewComment =
     try {
       const comment = await postsAPI.setNewComment(id, message, followedId);
       dispatch(postsActions.addNewComment(comment));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+export const deletePost =
+  (postId: string): ThunkType =>
+  async (dispatch, getState) => {
+    const myId = getState().auth.authData?._id;
+    try {
+      await postsAPI.deletePost(postId);
+      dispatch(postsActions.clearPosts());
+      await dispatch(getPosts(0, myId));
     } catch (e) {
       console.log(e);
     }
