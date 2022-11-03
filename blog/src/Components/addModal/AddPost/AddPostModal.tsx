@@ -6,10 +6,11 @@ import StepLabel from '@mui/material/StepLabel';
 import { FirstStepForm } from './PostSteps/FirstStepForm';
 import { SecondStepForm } from './PostSteps/SecondStepForm';
 import style from './addPost.module.css';
-import { addPost } from '../../../redux/Posts/thunks';
+import { addPhoto, addPost } from '../../../redux/Posts/thunks';
 import { AnyAction } from 'redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addPostValuesType } from '../../../redux/CommonDataTypes/types';
+import { AppStateType } from '../../../redux/store';
 
 type AddPostModalType = {
   onCLose: () => void;
@@ -20,6 +21,7 @@ const steps = ['Create Post', 'Add Photo'];
 export const AddPostModal: React.FC<AddPostModalType> = ({ onCLose }) => {
   const [activeStep, setActiveStep] = useState(0);
   const dispatch = useDispatch();
+  const postId = useSelector((state: AppStateType) => state.posts.newPost?._id);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -27,6 +29,10 @@ export const AddPostModal: React.FC<AddPostModalType> = ({ onCLose }) => {
 
   const firstStepSubmit = async (values: addPostValuesType) => {
     await dispatch(addPost(values) as unknown as AnyAction);
+    handleNext();
+  };
+  const secondStepSubmit = async (file: File, id: string) => {
+    await dispatch(addPhoto(file, id as string) as unknown as AnyAction);
     handleNext();
   };
 
@@ -53,7 +59,7 @@ export const AddPostModal: React.FC<AddPostModalType> = ({ onCLose }) => {
       </Stepper>
       <div>
         {activeStep === 0 && <FirstStepForm onCLose={onCLose} onSubmit={firstStepSubmit} />}
-        {activeStep === 1 && <SecondStepForm onCLose={onCLose} />}
+        {activeStep === 1 && <SecondStepForm onCLose={onCLose} onSubmit={secondStepSubmit} id={postId as string} />}
       </div>
     </Box>
   );

@@ -121,7 +121,6 @@ export const postReducer = (state = initialState, action: ActionsType): initialS
           data: state.posts.data.map((item) => (item._id === action.payload.post._id ? action.payload.post : item)),
         },
       };
-
     case LOG_OUT:
     case CLEAR_POSTS:
       return {

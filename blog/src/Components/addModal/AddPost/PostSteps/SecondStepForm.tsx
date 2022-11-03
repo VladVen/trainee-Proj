@@ -3,24 +3,20 @@ import React, { ChangeEvent, useState } from 'react';
 import { Button } from '@mui/material';
 import { Form, Formik, FormikValues } from 'formik';
 import style from '../addPost.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { addPhoto } from '../../../../redux/Posts/thunks';
-import { AnyAction } from 'redux';
-import { AppStateType } from '../../../../redux/store';
 
 const initialValues = { file: '' };
 
 type SecondStepFormType = {
   onCLose: () => void;
+  onSubmit: (file: File, id: string) => void;
+  id: string;
 };
 
-export const SecondStepForm: React.FC<SecondStepFormType> = ({ onCLose }) => {
+export const SecondStepForm: React.FC<SecondStepFormType> = ({ onCLose, onSubmit, id }) => {
   const [image, setImage] = useState<null | string>(null);
-  const dispatch = useDispatch();
-  const postId = useSelector((state: AppStateType) => state.posts.newPost?._id);
 
   const submitHandler = async (values: FormikValues, setSubmitting: (status: boolean) => void) => {
-    await dispatch(addPhoto(values.file, postId as string) as unknown as AnyAction);
+    await onSubmit(values.file, id);
     setSubmitting(false);
     onCLose();
   };
@@ -79,7 +75,7 @@ export const SecondStepForm: React.FC<SecondStepFormType> = ({ onCLose }) => {
                   </Button>
                 ) : (
                   <Button variant={'contained'} color={'secondary'} sx={{ ml: 5 }} onClick={onCLose}>
-                    Skip
+                    Close
                   </Button>
                 )}
               </Form>

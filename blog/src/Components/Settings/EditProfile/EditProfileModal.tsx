@@ -19,7 +19,7 @@ type EditModalType = {
   details: string;
 };
 
-export const EditModal: React.FC<EditModalType> = ({
+export const EditProfileModal: React.FC<EditModalType> = ({
   onCloseHandler,
   name,
   extra_details,

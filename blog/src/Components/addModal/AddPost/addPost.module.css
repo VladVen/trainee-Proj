@@ -21,7 +21,6 @@
   justify-content: space-between;
 }
 .buttons2 {
-  margin-top: 50px;
   display: flex;
   flex: 1;
   justify-content: space-between;
@@ -38,4 +37,5 @@
 .img {
   width: 100%;
   padding-top: 5%;
+  margin-bottom: 50px;
 }

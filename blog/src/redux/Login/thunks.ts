@@ -62,3 +62,14 @@ export const updateAccount =
       console.log(e);
     }
   };
+
+export const updateAvatar =
+  (img: File, id: string): ThunkType =>
+  async (dispatch) => {
+    try {
+      await loginAPI.updateAvatar(img, id);
+      await dispatch(getProfile());
+    } catch (e) {
+      console.log(e);
+    }
+  };
