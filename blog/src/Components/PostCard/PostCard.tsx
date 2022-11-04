@@ -48,7 +48,12 @@ export const PostCard: React.FC<PostCardType> = ({ post, altStyle = false }) => 
         </Box>
         <Box className={style.bottomSection}>
           <Box className={style.text}>{post.description}</Box>
-          <Like likes={post.likes} id={post._id} dispatchMethod={postLikeHandler} />
+          <Like
+            likes={post.likes}
+            id={post._id}
+            dispatchMethod={postLikeHandler}
+            color={altStyle ? 'primary' : 'secondary'}
+          />
         </Box>
       </Paper>
       <ModalWindow open={openModal} onCloseHandler={onOpenHandler}>

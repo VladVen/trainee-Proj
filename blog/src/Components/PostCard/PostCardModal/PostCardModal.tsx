@@ -56,8 +56,8 @@ export const PostCardModal: React.FC<PostCardModalType> = ({
 
   const image = post?.image ? `http://test-blog-api.ficuslife.com${post.image}` : altPhoto;
 
-  if (!post) {
-    return <Preloader />;
+  if (!comments || !post) {
+    return <Preloader color={'secondary'} />;
   }
 
   const computeChild = (roots: commonCommentsType[]) => {
@@ -74,48 +74,27 @@ export const PostCardModal: React.FC<PostCardModalType> = ({
 
   return (
     <Box className={style.container}>
-      <Box>{post.title}</Box>
+      <Box className={style.title}>{post.title}</Box>
+      <div className={style.image}>
+        <img src={image} alt={'Post image'} />
+      </div>
 
-      {myId == post.postedBy ? (
-        <Box
-          sx={{
-            backgroundImage: `url(${image})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            width: '500px',
-            height: '300px',
-            display: 'flex',
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <PhotoChange postId={post._id} />
-        </Box>
-      ) : (
-        <img src={image} style={{ width: '50%', height: '50%' }} alt={'Post image'} />
-      )}
       {myId == post.postedBy && (
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', m: 2 }}>
+        <Box className={style.buttonContainer}>
           <EditPost post={post} />
+          <PhotoChange postId={post._id} />
           <DeletePost postId={post._id} closeUpperModal={onCloseHandler} />
         </Box>
       )}
 
       <Box>{post.description}</Box>
       <Box>{post.fullText}</Box>
-      <Box>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Like likes={post.likes} id={post._id} dispatchMethod={postLikeHandler} />
       </Box>
 
       {comments.length ? (
-        <Box
-          sx={{
-            overflowY: 'auto',
-            minHeight: '10vh',
-            height: '20vh',
-          }}
-        >
+        <Box className={style.comments}>
           {computedComments.map((item) => (
             <Box
               key={item._id}

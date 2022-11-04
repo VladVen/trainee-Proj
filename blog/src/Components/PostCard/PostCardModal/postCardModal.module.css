@@ -1,4 +1,39 @@
 .container {
   max-height: 90vh;
-  max-width: 90vw;
+  max-width: 80vw;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.image {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
+.image img {
+  width: 90%;
+  height: 90%;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2%;
+}
+
+.buttonContainer div {
+  margin: 5px;
+}
+
+.title::first-letter {
+  text-transform: capitalize;
+}
+
+.comments {
+  overflow-y: auto;
+  height: 20vh;
+  width: 100%;
 }

@@ -30,6 +30,7 @@ const theme = createTheme({
         tooltip: {
           backgroundColor: '#F7C3B1',
           color: '#00203FFF',
+          borderRadius: '10px',
         },
         arrow: {
           color: '#F7C3B1',
