@@ -35,6 +35,7 @@ export const PostCardModal: React.FC<PostCardModalType> = ({
   const post = useSelector((state: AppStateType) => state.posts.currentPost.post);
   const comments = useSelector((state: AppStateType) => state.posts.currentPost.comments);
   const [reply, setReply] = useState<commonCommentsType | null>(null);
+  const [edit, setEdit] = useState<commonCommentsType | null>(null);
 
   const onLeaveHandler = () => {
     dispatch(postsActions.clearCurrentPost());
@@ -70,7 +71,7 @@ export const PostCardModal: React.FC<PostCardModalType> = ({
     return roots;
   };
 
-  const computedComments = computeChild(comments);
+  const computedComments = computeChild(comments.filter((item) => !item.followedCommentID));
 
   return (
     <Box className={style.container}>
@@ -102,12 +103,25 @@ export const PostCardModal: React.FC<PostCardModalType> = ({
                 mb: '5px',
               }}
             >
-              <Comment comment={item} setReply={setReply} commentLikeHandler={commentLikeHandler} />
+              <Comment
+                comment={item}
+                setReply={setReply}
+                setEdit={setEdit}
+                commentLikeHandler={commentLikeHandler}
+                myId={myId as string}
+              />
             </Box>
           ))}
         </Box>
       ) : null}
-      <CommentForm onCloseHandler={onCloseHandler} postId={post._id} setReply={setReply} reply={reply} />
+      <CommentForm
+        onCloseHandler={onCloseHandler}
+        postId={post._id}
+        setReply={setReply}
+        reply={reply}
+        setEdit={setEdit}
+        edit={edit}
+      />
     </Box>
   );
 };

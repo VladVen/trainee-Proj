@@ -5,6 +5,7 @@ import {
   CLEAR_CURRENT_POST,
   CLEAR_NEW_POST,
   CLEAR_POSTS,
+  EDIT_COMMENT,
   EDIT_POST,
   LOG_OUT,
   SAVE_NEW_POST,
@@ -66,6 +67,11 @@ export const postsActions = {
     ({
       type: EDIT_POST,
       payload: { post },
+    } as const),
+  editComment: (comment: commonCommentsType) =>
+    ({
+      type: EDIT_COMMENT,
+      payload: { comment },
     } as const),
   logout: () =>
     ({

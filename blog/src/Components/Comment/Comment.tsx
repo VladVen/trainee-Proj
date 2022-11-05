@@ -8,10 +8,21 @@ import style from './comment.module.css';
 type CommentType = {
   comment: commonCommentsType;
   commentLikeHandler: (id: string) => void;
-  setReply: (reply: commonCommentsType) => void;
+  setReply: (reply: commonCommentsType | null) => void;
+  setEdit: (reply: commonCommentsType | null) => void;
+  myId: string;
 };
 
-export const Comment: React.FC<CommentType> = ({ comment, commentLikeHandler, setReply }) => {
+export const Comment: React.FC<CommentType> = ({ comment, commentLikeHandler, setReply, setEdit, myId }) => {
+  const replyHandler = () => {
+    setEdit(null);
+    setReply(comment);
+  };
+  const editHandler = () => {
+    setReply(null);
+    setEdit(comment);
+  };
+
   return (
     <Box>
       <Box
@@ -27,9 +38,14 @@ export const Comment: React.FC<CommentType> = ({ comment, commentLikeHandler, se
         </Box>
         <Box className={style.comment}>{comment.text}</Box>
         <Box className={style.bottomBtn}>
-          <Button color={'secondary'} onClick={() => setReply(comment)}>
+          <Button color={'secondary'} onClick={replyHandler}>
             Reply
           </Button>
+          {comment.commentedBy === myId && (
+            <Button color={'secondary'} onClick={editHandler}>
+              Edit
+            </Button>
+          )}
           <Like likes={comment.likes} id={comment._id} dispatchMethod={commentLikeHandler} />
         </Box>
       </Box>
@@ -37,7 +53,13 @@ export const Comment: React.FC<CommentType> = ({ comment, commentLikeHandler, se
       <Box sx={{ ml: 2 }}>
         {comment.child.map((item) => (
           <Box key={item._id}>
-            <Comment comment={item} setReply={setReply} commentLikeHandler={commentLikeHandler} />
+            <Comment
+              comment={item}
+              setReply={setReply}
+              commentLikeHandler={commentLikeHandler}
+              setEdit={setEdit}
+              myId={myId}
+            />
           </Box>
         ))}
       </Box>
