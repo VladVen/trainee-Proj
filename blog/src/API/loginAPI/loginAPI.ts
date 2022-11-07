@@ -5,7 +5,7 @@ export const loginAPI = {
   logIn(email: string, password: string) {
     return instance
       .post('auth', { email, password })
-      .then((response) => localStorage.setItem('token', response.data.token));
+      .then((response) => sessionStorage.setItem('token', response.data.token));
   },
 
   createAccount(values: createAccountType) {

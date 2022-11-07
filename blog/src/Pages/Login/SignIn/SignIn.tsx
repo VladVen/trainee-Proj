@@ -24,7 +24,7 @@ export const SignIn = () => {
   const authData = useSelector((state: AppStateType) => state.auth.authData);
 
   useEffect(() => {
-    if (localStorage.token) {
+    if (sessionStorage.token) {
       dispatch(getProfile() as unknown as AnyAction);
     }
   }, []);
