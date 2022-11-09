@@ -1,0 +1,7 @@
+
+.btnGroup {
+    width: 100%;
+}
+.btnGroup > button {
+    width: 100%;
+}

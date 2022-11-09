@@ -1,5 +1,5 @@
 import { SET_SEARCH_ID, SET_TICKETS } from "./actionTypes";
-import { TicketsResponseType } from "../Types/types";
+import { commonTicketType } from "../Types/types";
 
 export const ticketsActions = {
   setSearchId: (id: string) =>
@@ -7,7 +7,7 @@ export const ticketsActions = {
       type: SET_SEARCH_ID,
       payload: { id },
     } as const),
-  setTickets: (tickets: TicketsResponseType) =>
+  setTickets: (tickets: commonTicketType[]) =>
     ({
       type: SET_TICKETS,
       payload: { tickets },

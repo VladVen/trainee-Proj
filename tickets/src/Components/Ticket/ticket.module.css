@@ -1,0 +1,12 @@
+
+.paper {
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -3,6 +3,7 @@ import { commonTicketType } from "../../redux/Types/types";
 import React from "react";
 import logo from "../../assets/companyLogo.png";
 import { Segment } from "./Segment/Segment";
+import style from './ticket.module.css'
 
 type TicketType = {
   ticket: commonTicketType;
@@ -10,14 +11,9 @@ type TicketType = {
 
 export const Ticket: React.FC<TicketType> = ({ ticket }) => {
   return (
-    <Paper sx={{ p: "20px", m: "20px" }}>
+    <Paper className={style.paper}>
       <Box
-        sx={{
-          display: "flex",
-          flex: 1,
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
+          className={style.container}
       >
         <Box color={"#2196F3"}>{ticket.price} P</Box>
         <Box>

@@ -16,8 +16,14 @@ export const getSearchId = (): ThunkType => async (dispatch) => {
 export const getTickets = (searchId: string): ThunkType => async (dispatch) => {
     try {
         let tickets = await ticketsAPI.getTickets(searchId);
-        dispatch(ticketsActions.setTickets(tickets));
-    } catch (e) {
-        console.log(e);
+        dispatch(ticketsActions.setTickets(tickets.tickets));
+        if(tickets.stop === false) {
+            await dispatch(getTickets(searchId))
+        }
+    } catch (e: any) {
+        if(e.response.status !== 404){
+            await dispatch(getTickets(searchId))
+        }
+
     }
 };

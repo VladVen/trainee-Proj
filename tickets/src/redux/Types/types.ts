@@ -1,8 +1,4 @@
 
-export type TicketsResponseType = {
-    stop: boolean
-    tickets: commonTicketType[]
-}
 
 export type commonTicketType = {
     price: number,

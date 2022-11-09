@@ -1,6 +1,7 @@
 import { commonSegmentType } from "../../../redux/Types/types";
 import React from "react";
 import { Box } from "@mui/material";
+import style from './segment.module.css'
 
 type SegmentType = {
   segment: commonSegmentType;
@@ -19,9 +20,9 @@ export const Segment: React.FC<SegmentType> = ({ segment }) => {
   const minutes = segment.duration % 60;
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+    <Box className={style.container}>
       <Box>
-        <Box>
+        <Box className={style.title}>
           {segment.origin} - {segment.destination}
         </Box>
         <Box>
@@ -29,14 +30,14 @@ export const Segment: React.FC<SegmentType> = ({ segment }) => {
         </Box>
       </Box>
       <Box>
-        <Box>В пути</Box>
+        <Box className={style.title}>В пути</Box>
         <Box>
           {hours}ч {minutes}м{" "}
         </Box>
       </Box>
       {segment.stops.length ? (
         <Box>
-          <Box>
+          <Box className={style.title}>
             Пересадки
           </Box>
           <Box sx={{ display: "flex" }}>
@@ -49,7 +50,7 @@ export const Segment: React.FC<SegmentType> = ({ segment }) => {
             )}
           </Box>
         </Box>
-      ) :  <Box>
+      ) :  <Box className={style.title}>
         Без Пересадок
       </Box>}
     </Box>
