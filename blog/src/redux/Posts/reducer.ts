@@ -8,6 +8,7 @@ import {
   CLEAR_CURRENT_POST,
   CLEAR_NEW_POST,
   CLEAR_POSTS,
+  EDIT_COMMENT,
   EDIT_POST,
   LOG_OUT,
   SAVE_NEW_POST,
@@ -93,6 +94,16 @@ export const postReducer = (state = initialState, action: ActionsType): initialS
         currentPost: {
           ...state.currentPost,
           comments: [...state.currentPost.comments, action.payload.comment],
+        },
+      };
+    case EDIT_COMMENT:
+      return {
+        ...state,
+        currentPost: {
+          ...state.currentPost,
+          comments: state.currentPost.comments.map((item) =>
+            item._id === action.payload.comment._id ? action.payload.comment : item
+          ),
         },
       };
     case ADD_LIKE:

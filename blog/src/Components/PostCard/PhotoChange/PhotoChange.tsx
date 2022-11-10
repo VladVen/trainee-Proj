@@ -3,6 +3,7 @@ import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addPhoto, getCurrentPost } from '../../../redux/Posts/thunks';
 import { AnyAction } from 'redux';
+import Box from '@mui/material/Box';
 
 type PhotoChangeType = {
   postId: string;
@@ -22,7 +23,7 @@ export const PhotoChange: React.FC<PhotoChangeType> = ({ postId }) => {
   };
 
   return (
-    <div>
+    <Box>
       <input
         id="file"
         name="file"
@@ -35,6 +36,6 @@ export const PhotoChange: React.FC<PhotoChangeType> = ({ postId }) => {
           Change Photo
         </Button>
       </label>
-    </div>
+    </Box>
   );
 };

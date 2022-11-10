@@ -6,6 +6,7 @@ import { SettingsPart } from '../Settings/SettingsPart';
 import { useLocation } from 'react-router-dom';
 import style from './profileDesc.module.css';
 import { useWindowSize } from 'usehooks-ts';
+import {AboutProfile} from "./AboutProfile/AboutProfile";
 
 type ProfileDescriptionType = {
   profileData: commonUserType;
@@ -15,7 +16,6 @@ export const ProfileDescription: React.FC<ProfileDescriptionType> = ({ profileDa
   const location = useLocation();
   const { width } = useWindowSize();
 
-  const date = new Date(profileData?.dateCreated as string);
   const img = profileData.avatar && `http://test-blog-api.ficuslife.com${profileData.avatar}`;
   const title = location.pathname === '/settings' ? 'Profile Settings' : 'Blog';
 
@@ -27,11 +27,7 @@ export const ProfileDescription: React.FC<ProfileDescriptionType> = ({ profileDa
           <Box>
             <Avatar src={img} alt={'avatar'} sx={{ width: '100px', height: '100px', mr: 3 }} />
           </Box>
-          <Box>
-            <Box sx={{ mb: 3 }}>{profileData?.name}</Box>
-            <Box>{date.toLocaleDateString('en-GB')}</Box>
-            <Box>{profileData?.email}</Box>
-          </Box>
+          <AboutProfile profileData={profileData} />
         </Box>
 
         {location.pathname === '/settings' && <SettingsPart profileData={profileData} />}

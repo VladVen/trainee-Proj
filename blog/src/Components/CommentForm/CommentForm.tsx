@@ -1,15 +1,15 @@
 import { Form, Formik, FormikValues } from 'formik';
-import { Avatar, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import React from 'react';
 import Box from '@mui/material/Box';
 import { FormField } from '../FormField/FormField';
 import style from './commentForm.module.css';
 import { commonCommentsType } from '../../redux/CommonDataTypes/types';
-import ReplyIcon from '@mui/icons-material/Reply';
 import { useDispatch } from 'react-redux';
-import { addNewComment } from '../../redux/Posts/thunks';
+import { addNewComment, editComment } from '../../redux/Posts/thunks';
 import { AnyAction } from 'redux';
 import addCommentValidationSchema from './validator';
+import { ReplyEdit } from './ReplyEdit/ReplyEdit';
 
 type setSubmittingType = (status: boolean) => void;
 
@@ -17,15 +17,22 @@ type CommentFormType = {
   onCloseHandler: () => void;
   reply: commonCommentsType | null;
   setReply: (reply: null) => void;
+  edit: commonCommentsType | null;
+  setEdit: (reply: null) => void;
   postId: string;
 };
 
-export const CommentForm: React.FC<CommentFormType> = ({ onCloseHandler, reply, setReply, postId }) => {
+export const CommentForm: React.FC<CommentFormType> = ({ onCloseHandler, reply, setReply, edit, setEdit, postId }) => {
   const dispatch = useDispatch();
 
   const onSubmitHandler = async (values: FormikValues, setSubmitting: setSubmittingType, resetForm: any) => {
-    await dispatch(addNewComment(postId, values.comment, reply?._id || null) as unknown as AnyAction);
-    setReply(null);
+    if (edit) {
+      await dispatch(editComment(edit._id, values.comment) as unknown as AnyAction);
+      setEdit(null);
+    } else {
+      await dispatch(addNewComment(postId, values.comment, reply?._id || null) as unknown as AnyAction);
+      setReply(null);
+    }
     resetForm();
     setSubmitting(false);
   };
@@ -38,22 +45,8 @@ export const CommentForm: React.FC<CommentFormType> = ({ onCloseHandler, reply, 
     >
       {({ isSubmitting, values, errors, setFieldValue, touched }) => (
         <Form>
-          {reply && (
-            <Box>
-              <Box className={style.replyContainer}>
-                <Box className={style.reply}>
-                  Reply <ReplyIcon />
-                </Box>
-                <Button color={'secondary'} onClick={() => setReply(null)}>
-                  Cancel
-                </Button>
-              </Box>
-              <Box className={style.comment}>
-                <Avatar />
-                <div>{reply.text}</div>
-              </Box>
-            </Box>
-          )}
+          {reply && <ReplyEdit text={reply.text} cancelAction={() => setReply(null)} method={'reply'} />}
+          {edit && <ReplyEdit text={edit.text} cancelAction={() => setEdit(null)} method={'edit'} />}
           <Box>
             <FormField
               name={'comment'}

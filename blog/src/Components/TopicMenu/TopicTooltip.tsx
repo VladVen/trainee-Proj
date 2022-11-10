@@ -19,7 +19,7 @@ export const TopicToolTip: FC<TopicTooltip> = ({ name, avatar }) => {
     dispatch(loginActions.logout());
     dispatch(postsActions.logout());
     dispatch(usersActions.logout());
-    localStorage.clear();
+    sessionStorage.clear();
   };
 
   const img = avatar && `http://test-blog-api.ficuslife.com${avatar}`;

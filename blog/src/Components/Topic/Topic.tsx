@@ -26,13 +26,15 @@ export const Topic = () => {
     <div className={style.container}>
       <div className={style.leftRightSide}>
         <div style={{ color: 'white', marginRight: 40 }}>Logo</div>
-        {name && width < 720 ? (
-          <Tooltip title={<NavButtons />} enterTouchDelay={0} arrow>
-            <MenuOutlined color={'secondary'} />
-          </Tooltip>
-        ) : (
-          <NavButtons />
-        )}
+        {name ? (
+          width < 720 ? (
+            <Tooltip title={<NavButtons />} enterTouchDelay={0} arrow>
+              <MenuOutlined color={'secondary'} />
+            </Tooltip>
+          ) : (
+            <NavButtons />
+          )
+        ) : null}
       </div>
 
       <div className={style.leftRightSide}>

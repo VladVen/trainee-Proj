@@ -24,3 +24,7 @@
 .altItemsPosition div:nth-child(2) {
   margin-top: 5%;
 }
+
+.aboutProfile > div {
+  margin-bottom: 5px;
+}

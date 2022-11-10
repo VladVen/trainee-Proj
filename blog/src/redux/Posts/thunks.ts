@@ -107,6 +107,17 @@ export const addNewComment =
     }
   };
 
+export const editComment =
+  (id: string, text: string): ThunkType =>
+  async (dispatch) => {
+    try {
+      const comment = await postsAPI.editComment(id, text);
+      dispatch(postsActions.editComment(comment));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
 export const deletePost =
   (postId: string): ThunkType =>
   async (dispatch, getState) => {

@@ -34,6 +34,9 @@ export const postsAPI = {
   getCurrentComments(id: string) {
     return instance.get(`comments/post/${id}`).then((response) => response.data);
   },
+  editComment(id: string, text: string) {
+    return instance.patch(`comments/${id}`, { text }).then((response) => response.data);
+  },
   setNewComment(id: string, message: string, followedId: string | null) {
     return instance
       .post(`comments/post/${id}`, { text: message, followedCommentID: followedId })

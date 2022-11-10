@@ -15,5 +15,6 @@ export const ADD_LIKE = 'posts/ADD_LIKE';
 
 export const ADD_PHOTO = 'posts/ADD_PHOTO';
 export const EDIT_POST = 'posts/EDIT_POST';
+export const EDIT_COMMENT = 'posts/EDIT_COMMENT';
 
 export const LOG_OUT = 'posts/LOG_OUT';
