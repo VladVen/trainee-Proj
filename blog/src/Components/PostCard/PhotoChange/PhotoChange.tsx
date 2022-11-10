@@ -32,7 +32,7 @@ export const PhotoChange: React.FC<PhotoChangeType> = ({ postId }) => {
       />
       <label htmlFor="file">
         <Button variant="contained" color="secondary" component={'span'} disabled={submitting}>
-          Change
+          Change Photo
         </Button>
       </label>
     </div>

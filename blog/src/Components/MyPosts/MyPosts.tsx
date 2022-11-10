@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { commonPostType } from '../../redux/CommonDataTypes/types';
 import { PostCard } from '../PostCard/PostCard';
 import { AnyAction } from 'redux';
@@ -37,14 +37,6 @@ export const MyPosts: React.FC<MyPostsType> = ({ posts, totalCount, myId, altCar
     const skip = (value - 1) * 10;
     dispatch(getPosts(skip, myId) as unknown as AnyAction);
   };
-
-  const onLeaveHandler = useCallback(() => {
-    dispatch(postsActions.clearPosts());
-  }, []);
-
-  useEffect(() => {
-    return onLeaveHandler;
-  }, [location.pathname]);
 
   if (totalCount === null) return <Preloader />;
 

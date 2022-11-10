@@ -34,7 +34,7 @@ export const Comment: React.FC<CommentType> = ({ comment, commentLikeHandler, se
         </Box>
       </Box>
 
-      <Box sx={{ ml: 5 }}>
+      <Box sx={{ ml: 2 }}>
         {comment.child.map((item) => (
           <Box key={item._id}>
             <Comment comment={item} setReply={setReply} commentLikeHandler={commentLikeHandler} />

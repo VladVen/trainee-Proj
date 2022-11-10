@@ -41,8 +41,8 @@ export const SecondStepForm: React.FC<SecondStepFormType> = ({ onCLose, onSubmit
           };
 
           return (
-            <Box className={style.buttons2}>
-              <Form>
+            <Form>
+              <Box className={style.buttons2}>
                 <input
                   id="file"
                   name="file"
@@ -78,8 +78,8 @@ export const SecondStepForm: React.FC<SecondStepFormType> = ({ onCLose, onSubmit
                     Close
                   </Button>
                 )}
-              </Form>
-            </Box>
+              </Box>
+            </Form>
           );
         }}
       </Formik>

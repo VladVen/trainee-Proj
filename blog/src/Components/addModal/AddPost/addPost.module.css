@@ -20,10 +20,19 @@
   width: 100%;
   justify-content: space-between;
 }
+.buttons button {
+  margin: 2%;
+}
+
 .buttons2 {
   display: flex;
   flex: 1;
+  align-items: center;
   justify-content: space-between;
+}
+
+.buttons2 button {
+  margin: 2%;
 }
 
 .step2form {

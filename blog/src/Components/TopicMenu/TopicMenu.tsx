@@ -1,35 +1,26 @@
-import { TopicTooltip } from './TopicTooltip';
 import Box from '@mui/material/Box';
-import { Avatar, Tooltip } from '@mui/material';
+import { Button } from '@mui/material';
+import style from '../Topic/topic.module.css';
+import { NavLink } from 'react-router-dom';
 import { FC } from 'react';
-import { useDispatch } from 'react-redux';
-import { loginActions } from '../../redux/Login/actions';
-import { postsActions } from '../../redux/Posts/actions';
-import { usersActions } from '../../redux/Users/actions';
 
-type TopicMenu = {
-  name: string;
-  avatar: string | undefined;
+type TopicMenuType = {
+  logoutHandler: () => void;
 };
 
-export const TopicMenu: FC<TopicMenu> = ({ name, avatar }) => {
-  const dispatch = useDispatch();
-
-  const logoutHandler = () => {
-    dispatch(loginActions.logout());
-    dispatch(postsActions.logout());
-    dispatch(usersActions.logout());
-    localStorage.clear();
-  };
-
-  const img = avatar && `http://test-blog-api.ficuslife.com${avatar}`;
-
+export const TopicMenu: FC<TopicMenuType> = ({ logoutHandler }) => {
   return (
-    <Tooltip title={<TopicTooltip logoutHandler={logoutHandler} />} arrow>
-      <Box sx={{ display: 'flex' }}>
-        <Avatar alt="avatar" src={img} sx={{ width: 24, height: 24, mr: 2 }} />
-        <Box>{name}</Box>
-      </Box>
-    </Tooltip>
+    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <Button>
+        <NavLink to={'/settings'} className={style.link}>
+          Settings
+        </NavLink>
+      </Button>
+      <Button>
+        <NavLink to={'/signin'} className={style.link} onClick={logoutHandler}>
+          Log out
+        </NavLink>
+      </Button>
+    </Box>
   );
 };
