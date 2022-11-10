@@ -26,7 +26,7 @@ export const Topic = () => {
           <div>
             <NavLink to={'/blog'} className={style.link}>
               <Button color="secondary" variant="contained" sx={{ mr: 1 }}>
-                Ficus
+                Blog
               </Button>
             </NavLink>
             <NavLink to={'/posts'} className={style.link}>

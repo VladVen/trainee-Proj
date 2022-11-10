@@ -13,6 +13,8 @@ import { PhotoChange } from '../PhotoChange/PhotoChange';
 import { CommentForm } from '../../CommentForm/CommentForm';
 import { commonCommentsType } from '../../../redux/CommonDataTypes/types';
 import style from './postCardModal.module.css';
+import { EditPost } from '../../PostManagement/EditPost';
+import { DeletePost } from '../../PostManagement/DeletePost';
 
 type PostCardModalType = {
   onCloseHandler: () => void;
@@ -92,6 +94,12 @@ export const PostCardModal: React.FC<PostCardModalType> = ({
         </Box>
       ) : (
         <img src={image} style={{ width: '50%', height: '50%' }} alt={'Post image'} />
+      )}
+      {myId == post.postedBy && (
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', m: 2 }}>
+          <EditPost post={post} />
+          <DeletePost postId={post._id} closeUpperModal={onCloseHandler} />
+        </Box>
       )}
 
       <Box>{post.description}</Box>

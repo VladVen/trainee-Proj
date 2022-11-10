@@ -3,8 +3,8 @@ import { Avatar } from '@mui/material';
 import { commonUserType } from '../../redux/CommonDataTypes/types';
 import React from 'react';
 import { SettingsPart } from '../Settings/SettingsPart';
-import {useLocation} from "react-router-dom";
-import style from './profileDesc.module.css'
+import { useLocation } from 'react-router-dom';
+import style from './profileDesc.module.css';
 
 type ProfileDescriptionType = {
   profileData: commonUserType;
@@ -14,10 +14,10 @@ export const ProfileDescription: React.FC<ProfileDescriptionType> = ({ profileDa
   const date = new Date(profileData?.dateCreated as string);
 
   const img = profileData.avatar && `http://test-blog-api.ficuslife.com${profileData.avatar}`;
-  let location = useLocation()
+  let location = useLocation();
 
-  const title = location.pathname === '/settings' ? 'Profile Settings' : 'Blog'
-  
+  const title = location.pathname === '/settings' ? 'Profile Settings' : 'Blog';
+
   return (
     <Box className={style.container}>
       <Box className={style.title}>{title}</Box>

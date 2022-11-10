@@ -23,11 +23,9 @@ export const Like: React.FC<LikeType> = ({ dispatchMethod, likes, id, color = 's
   const likeHandler = async () => {
     if (likeColor === 'error') {
       await dispatchMethod(id);
-      setLikesCount((prevState) => prevState - 1);
       setLikeColor(color);
     } else {
       await dispatchMethod(id);
-      setLikesCount((prevState) => prevState + 1);
       setLikeColor('error');
     }
   };

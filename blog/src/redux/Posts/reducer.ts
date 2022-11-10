@@ -4,9 +4,11 @@ import { commonCommentsType, commonPostType } from '../CommonDataTypes/types';
 import {
   ADD_LIKE,
   ADD_NEW_COMMENT,
+  ADD_PHOTO,
   CLEAR_CURRENT_POST,
   CLEAR_NEW_POST,
   CLEAR_POSTS,
+  EDIT_POST,
   LOG_OUT,
   SAVE_NEW_POST,
   SET_CURRENT_COMMENTS,
@@ -110,6 +112,16 @@ export const postReducer = (state = initialState, action: ActionsType): initialS
           ),
         },
       };
+    case ADD_PHOTO:
+    case EDIT_POST:
+      return {
+        ...state,
+        posts: {
+          ...state.posts,
+          data: state.posts.data.map((item) => (item._id === action.payload.post._id ? action.payload.post : item)),
+        },
+      };
+
     case LOG_OUT:
     case CLEAR_POSTS:
       return {

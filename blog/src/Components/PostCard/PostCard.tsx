@@ -9,7 +9,7 @@ import { PostCardModal } from './PostCardModal/PostCardModal';
 import { Like } from '../Like/Like';
 import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
-import { addCommentLike, addLike } from '../../redux/Posts/thunks';
+import { addCommentLike, addLike, getCurrentPost } from '../../redux/Posts/thunks';
 
 type PostCardType = {
   post: commonPostType;
@@ -27,6 +27,11 @@ export const PostCard: React.FC<PostCardType> = ({ post, altStyle = false }) => 
 
   const postLikeHandler = async (id: string) => {
     await dispatch(addLike(id) as unknown as AnyAction);
+    await dispatch(getCurrentPost(id) as unknown as AnyAction);
+  };
+  const postModalLikeHandler = async (id: string) => {
+    await dispatch(addLike(id) as unknown as AnyAction);
+    await dispatch(getCurrentPost(id) as unknown as AnyAction);
   };
   const commentLikeHandler = async (id: string) => {
     await dispatch(addCommentLike(id) as unknown as AnyAction);
@@ -35,23 +40,25 @@ export const PostCard: React.FC<PostCardType> = ({ post, altStyle = false }) => 
   const image = post.image ? `http://test-blog-api.ficuslife.com${post.image}` : altPhoto;
 
   return (
-    <Paper className={altStyle ? style.paperAlt : style.paper} onClick={onOpenHandler}>
-      <Box className={style.text}>{post.title}</Box>
-      <Box>
-        <img src={image} alt={'photo'} className={style.img} />
-      </Box>
-      <Box className={style.bottomSection}>
-        <Box className={style.text}>{post.description}</Box>
-        <Like likes={post.likes} id={post._id} dispatchMethod={postLikeHandler} />
-      </Box>
+    <Box>
+      <Paper className={altStyle ? style.paperAlt : style.paper} onClick={onOpenHandler}>
+        <Box className={style.text}>{post.title}</Box>
+        <Box>
+          <img src={image} alt={'photo'} className={style.img} />
+        </Box>
+        <Box className={style.bottomSection}>
+          <Box className={style.text}>{post.description}</Box>
+          <Like likes={post.likes} id={post._id} dispatchMethod={postLikeHandler} />
+        </Box>
+      </Paper>
       <ModalWindow open={openModal} onCloseHandler={onOpenHandler}>
         <PostCardModal
           onCloseHandler={onOpenHandler}
           id={post._id}
-          postLikeHandler={postLikeHandler}
+          postLikeHandler={postModalLikeHandler}
           commentLikeHandler={commentLikeHandler}
         />
       </ModalWindow>
-    </Paper>
+    </Box>
   );
 };

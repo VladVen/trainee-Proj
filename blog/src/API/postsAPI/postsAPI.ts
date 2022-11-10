@@ -1,5 +1,5 @@
 import { instance } from '../api';
-import { commonAddPostType } from '../../redux/CommonDataTypes/types';
+import { addPostValuesType, commonAddPostType } from '../../redux/CommonDataTypes/types';
 
 export const postsAPI = {
   getPosts(startValue: number, id = '') {
@@ -8,14 +8,19 @@ export const postsAPI = {
   addPost(post: commonAddPostType) {
     return instance.post(`posts`, { ...post }).then((response) => response.data);
   },
+  editPost(post: addPostValuesType, id: string) {
+    return instance.patch(`posts/${id}`, { ...post }).then((response) => response.data);
+  },
   addPhoto(img: File, id: string) {
     const formData = new FormData();
     formData.append('image', img);
-    return instance.put(`posts/upload/${id}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    return instance
+      .put(`posts/upload/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((response) => response.data);
   },
   addLike(id: string) {
     return instance.put(`posts/like/${id}`).then((response) => response.data);
@@ -33,5 +38,8 @@ export const postsAPI = {
     return instance
       .post(`comments/post/${id}`, { text: message, followedCommentID: followedId })
       .then((response) => response.data);
+  },
+  deletePost(postId: string) {
+    return instance.delete(`posts/${postId}`).then((response) => response.data);
   },
 };
