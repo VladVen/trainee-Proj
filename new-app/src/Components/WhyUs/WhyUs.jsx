@@ -22,7 +22,7 @@ export const WhyUs = () => {
                   </div>
               </div>
               <div className="sectionList">
-                  <img src={flight} alt="flight Tickets" />
+                  <img src={flight} alt="flight TicketsPage" />
                       <img src={accomodation} alt="Accomodation" />
                           <img src={tours} alt="Packaged tour" />
                               <img src={another} alt="another" />
