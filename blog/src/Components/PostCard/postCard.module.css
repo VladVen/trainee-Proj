@@ -1,46 +1,45 @@
-
 .img {
-    padding: 10px;
-    width: 200px;
-    height: 150px;
+  padding: 10px;
+  width: 200px;
+  height: 150px;
 }
 
 .paper {
-    width: 200px;
-    padding: 10px;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
 }
 .paperAlt {
-    width: 200px;
-    padding: 10px;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
-    background-color: #FFE5B4 !important;
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  background-color: #ffe5b4 !important;
 }
 
 .bottomSection {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .bottomSection > div:nth-child(2) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .text {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width : 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 150px;
 }

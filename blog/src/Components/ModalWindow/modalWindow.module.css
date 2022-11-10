@@ -1,20 +1,18 @@
-
 .paper {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    padding: 25px;
-    border-radius: 20px !important;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px;
+  border-radius: 20px !important;
 }
 
 .paper ::-webkit-scrollbar {
-    background-color: #f4a384;
-    width: 10px;
+  background-color: #f4a384;
+  width: 10px;
 }
 
-
 .paper ::-webkit-scrollbar-thumb {
-    background: #FFE5B4;
-    border-radius: 10px;
+  background: #ffe5b4;
+  border-radius: 10px;
 }

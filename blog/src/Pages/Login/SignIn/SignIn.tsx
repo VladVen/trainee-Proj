@@ -3,13 +3,13 @@ import { Form, Formik } from 'formik';
 import { AnyAction } from 'redux';
 import { AppStateType } from '../../../redux/store';
 import { Button } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import style from './signIn.module.css';
 import { Navigate, NavLink } from 'react-router-dom';
 import { FormField } from '../../../Components/FormField/FormField';
 import Box from '@mui/material/Box';
 import signInValidationSchema from './validator';
-import { setLogIn } from '../../../redux/Login/thunks';
+import { getProfile, setLogIn } from '../../../redux/Login/thunks';
 import { loginActions } from '../../../redux/Login/actions';
 
 type ValuesType = {
@@ -22,6 +22,12 @@ export const SignIn = () => {
   const dispatch = useDispatch();
   const error = useSelector((state: AppStateType) => state.auth.error);
   const authData = useSelector((state: AppStateType) => state.auth.authData);
+
+  useEffect(() => {
+    if (localStorage.token) {
+      dispatch(getProfile() as unknown as AnyAction);
+    }
+  }, []);
 
   if (authData) {
     return <Navigate to={'/blog'} />;
@@ -43,44 +49,53 @@ export const SignIn = () => {
         validationSchema={signInValidationSchema}
         onSubmit={async (values, { setSubmitting }) => onSubmitHandler(values, setSubmitting)}
       >
-        {({ isSubmitting, values, errors, setFieldValue }) => (
-          <Form>
-            <div className={style.form}>
-              <FormField
-                name={'email'}
-                label={'Email'}
-                error={errors.email}
-                value={values.email}
-                setValue={setFieldValue}
-              />
-              <FormField
-                name={'password'}
-                label={'Password'}
-                error={errors.password}
-                value={values.password}
-                setValue={setFieldValue}
-                inputProps={{ maxLength: 10 }}
-              />
-              <div>{error && <div>{error}</div>}</div>
+        {({ isSubmitting, values, errors, touched, setFieldValue, setFieldTouched }) => {
+          const setValue = (name: string, value: string) => {
+            setFieldTouched(name, true);
+            setFieldValue(name, value);
+          };
 
-              <Box>
-                Don't have account ?
-                <Button variant="contained" size="small" sx={{ ml: '5px' }}>
-                  <NavLink to={'/signup'} className={style.link} onClick={errorCleaner}>
-                    {' '}
-                    Sign it for free
-                  </NavLink>
-                </Button>
-              </Box>
+          return (
+            <Form>
+              <div className={style.form}>
+                <FormField
+                  name={'email'}
+                  touched={touched.email}
+                  label={'Email'}
+                  error={errors.email}
+                  value={values.email}
+                  setValue={setValue}
+                />
+                <FormField
+                  name={'password'}
+                  touched={touched.password}
+                  label={'Password'}
+                  error={errors.password}
+                  value={values.password}
+                  setValue={setValue}
+                  inputProps={{ maxLength: 10 }}
+                />
+                <div>{error && <div>{error}</div>}</div>
 
-              <Box sx={{ mt: '20px' }}>
-                <Button type="submit" variant="contained" disabled={isSubmitting}>
-                  Submit
-                </Button>
-              </Box>
-            </div>
-          </Form>
-        )}
+                <Box>
+                  Don't have account ?
+                  <Button variant="contained" size="small" sx={{ ml: '5px' }}>
+                    <NavLink to={'/signup'} className={style.link} onClick={errorCleaner}>
+                      {' '}
+                      Sign it for free
+                    </NavLink>
+                  </Button>
+                </Box>
+
+                <Box sx={{ mt: '20px' }}>
+                  <Button type="submit" variant="contained" disabled={isSubmitting}>
+                    Submit
+                  </Button>
+                </Box>
+              </div>
+            </Form>
+          );
+        }}
       </Formik>
     </div>
   );

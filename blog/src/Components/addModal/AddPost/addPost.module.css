@@ -1,34 +1,42 @@
+.container {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
 .form {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 300px;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 300px;
 }
 
 .buttons {
-    margin-top: 20px;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 .buttons2 {
-    margin-top: 50px;
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
+  margin-top: 50px;
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
 }
 
 .step2form {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .img {
-    width: 100%;
-    padding-top: 5%;
+  width: 100%;
+  padding-top: 5%;
 }

@@ -1,80 +1,93 @@
-import {CommonThunkType} from "../store";
-import {postsActions} from "./actions";
-import {ActionsType} from "./reducer";
-import {postsAPI} from "../../API/postsAPI/postsAPI";
-import {commonAddPostType} from "../CommonDataTypes/types";
+import { CommonThunkType } from '../store';
+import { postsActions } from './actions';
+import { ActionsType } from './reducer';
+import { postsAPI } from '../../API/postsAPI/postsAPI';
+import { commonAddPostType } from '../CommonDataTypes/types';
 
+export type ThunkType = CommonThunkType<ActionsType>;
 
-export type ThunkType = CommonThunkType<ActionsType>
-
-
-export const getPosts = (startValue: number, id = ''): ThunkType => async (dispatch) => {
+export const getPosts =
+  (startValue: number, id = ''): ThunkType =>
+  async (dispatch) => {
     try {
-        let posts = await postsAPI.getPosts(startValue, id)
-        dispatch(postsActions.setPosts(posts))
+      let posts = await postsAPI.getPosts(startValue, id);
+      dispatch(postsActions.setPosts(posts));
     } catch (e) {
-        console.log(e)
+      console.log(e);
     }
-}
+  };
 
-export const addLike = (id: string): ThunkType => async () => {
+export const addLike =
+  (id: string): ThunkType =>
+  async (dispatch, getState) => {
+    const myId = getState().auth.authData?._id as string;
     try {
-        await postsAPI.addLike(id)
+      await postsAPI.addLike(id);
+      dispatch(postsActions.addLike(id, myId));
     } catch (e) {
-        console.log(e)
+      console.log(e);
     }
-}
-export const addCommentLike = (id: string): ThunkType => async () => {
+  };
+export const addCommentLike =
+  (id: string): ThunkType =>
+  async () => {
     try {
-        await postsAPI.addCommentLike(id)
+      await postsAPI.addCommentLike(id);
     } catch (e) {
-        console.log(e)
+      console.log(e);
     }
-}
+  };
 
-export const addPost = (post: commonAddPostType): ThunkType => async (dispatch) => {
+export const addPost =
+  (post: commonAddPostType): ThunkType =>
+  async (dispatch) => {
     try {
-       const newPost = await postsAPI.addPost(post)
-        dispatch(postsActions.saveNewPost(newPost))
+      const newPost = await postsAPI.addPost(post);
+      dispatch(postsActions.saveNewPost(newPost));
     } catch (e) {
-        console.log(e)
+      console.log(e);
     }
-}
-export const addPhoto = (img: File, id: string): ThunkType => async (dispatch) => {
+  };
+export const addPhoto =
+  (img: File, id: string): ThunkType =>
+  async (dispatch) => {
     try {
-        await postsAPI.addPhoto(img, id )
+      await postsAPI.addPhoto(img, id);
     } catch (e) {
-        console.log(e)
+      console.log(e);
     } finally {
-        dispatch(postsActions.clearNewPost())
+      dispatch(postsActions.clearNewPost());
     }
-}
-export const getCurrentPost = (id: string): ThunkType => async (dispatch) => {
+  };
+export const getCurrentPost =
+  (id: string): ThunkType =>
+  async (dispatch) => {
     try {
-       const post = await postsAPI.getCurrentPost(id)
-        dispatch(postsActions.setCurrentPost(post))
+      const post = await postsAPI.getCurrentPost(id);
+      dispatch(postsActions.setCurrentPost(post));
     } catch (e) {
-        console.log(e)
+      console.log(e);
     }
-}
+  };
 
-export const getCurrentComments = (id: string): ThunkType => async (dispatch) => {
+export const getCurrentComments =
+  (id: string): ThunkType =>
+  async (dispatch) => {
     try {
-        const comments = await postsAPI.getCurrentComments(id)
-        dispatch(postsActions.setCurrentComments(comments))
+      const comments = await postsAPI.getCurrentComments(id);
+      dispatch(postsActions.setCurrentComments(comments));
     } catch (e) {
-        console.log(e)
+      console.log(e);
     }
-}
+  };
 
-export const addNewComment = (id: string, message: string, followedId: string | null): ThunkType => async (dispatch) => {
+export const addNewComment =
+  (id: string, message: string, followedId: string | null): ThunkType =>
+  async (dispatch) => {
     try {
-        const comment = await postsAPI.setNewComment(id, message, followedId)
-        dispatch(postsActions.addNewComment(comment))
+      const comment = await postsAPI.setNewComment(id, message, followedId);
+      dispatch(postsActions.addNewComment(comment));
     } catch (e) {
-        console.log(e)
+      console.log(e);
     }
-}
-
-
-
+  };
