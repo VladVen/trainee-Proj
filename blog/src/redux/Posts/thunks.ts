@@ -7,10 +7,10 @@ import { addPostValuesType, commonAddPostType } from '../CommonDataTypes/types';
 export type ThunkType = CommonThunkType<ActionsType>;
 
 export const getPosts =
-  (startValue: number, id = ''): ThunkType =>
+  (startValue: number, id = '', search = ''): ThunkType =>
   async (dispatch) => {
     try {
-      let posts = await postsAPI.getPosts(startValue, id);
+      let posts = await postsAPI.getPosts(startValue, id, search);
       dispatch(postsActions.setPosts(posts));
     } catch (e) {
       console.log(e);
@@ -48,6 +48,7 @@ export const addPost =
       console.log(e);
     }
   };
+
 export const addPhoto =
   (img: File, id: string): ThunkType =>
   async (dispatch) => {

@@ -2,8 +2,8 @@ import { instance } from '../api';
 import { addPostValuesType, commonAddPostType } from '../../redux/CommonDataTypes/types';
 
 export const postsAPI = {
-  getPosts(startValue: number, id = '') {
-    return instance.get(`posts?postedBy=${id}&skip=${startValue}`).then((response) => response.data);
+  getPosts(startValue: number, id = '', search = '') {
+    return instance.get(`posts?search=${search}&postedBy=${id}&skip=${startValue}`).then((response) => response.data);
   },
   addPost(post: commonAddPostType) {
     return instance.post(`posts`, { ...post }).then((response) => response.data);

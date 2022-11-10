@@ -20,4 +20,15 @@ export const loginAPI = {
   updateProfile(values: updateAccountType, id: string) {
     return instance.patch(`/users/${id}`, { ...values }).then((response) => response.data);
   },
+  updateAvatar(img: File, id: string) {
+    const formData = new FormData();
+    formData.append('avatar', img);
+    return instance
+      .put(`users/upload/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((response) => response.data);
+  },
 };
