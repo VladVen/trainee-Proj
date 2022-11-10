@@ -61,6 +61,7 @@ export const Users = () => {
         {users.data.map((item) => (
           <UserCard
             key={item._id}
+            id={item._id}
             name={item.name}
             avatar={item.avatar}
             email={item.email}

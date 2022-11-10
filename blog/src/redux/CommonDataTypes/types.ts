@@ -37,9 +37,9 @@ export type commonAddPostType = {
 
 export type postsResponseType = {
   pagination: {
-    skip: number;
-    limit: number;
-    total: number;
+    skip: number | null;
+    limit: number | null;
+    total: number | null;
   };
   data: commonPostType[];
 };

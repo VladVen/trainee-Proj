@@ -1,7 +1,7 @@
 import { InferActionType } from '../store';
 import { usersActions } from './actions';
 import { commonUserType } from '../CommonDataTypes/types';
-import { CLEAR_USERS, GET_USERS, LOG_OUT } from './actionTypes';
+import { CLEAR_CURRENT_USER, CLEAR_USERS, GET_CURRENT_USER, GET_USERS, LOG_OUT } from './actionTypes';
 
 const initialState = {
   users: {
@@ -12,6 +12,7 @@ const initialState = {
     },
     data: [] as commonUserType[],
   },
+  currentUser: null as commonUserType | null,
 };
 
 type initialStateType = typeof initialState;
@@ -33,6 +34,16 @@ export const usersReducer = (state = initialState, action: ActionsType): initial
           },
           data: [...state.users.data, ...action.payload.users.data],
         },
+      };
+    case GET_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: action.payload.user
+      };
+      case CLEAR_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: null
       };
     case CLEAR_USERS:
     case LOG_OUT:
