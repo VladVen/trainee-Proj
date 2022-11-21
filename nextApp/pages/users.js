@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from "next/link";
-import MainContainer from "../components/MainContainer";
+import MainContainer from "../components/MainContainer/MainContainer";
 
 const Users = ({users}) => {
 

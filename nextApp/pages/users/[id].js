@@ -1,5 +1,6 @@
 import styles from '../../styles/user.module.scss'
-import MainContainer from "../../components/MainContainer";
+import MainContainer from "../../components/MainContainer/MainContainer";
+
 
 export default function ({user}) {
 
