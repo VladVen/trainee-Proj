@@ -12,7 +12,7 @@ const MainContainer = ({children, keywords}) => {
 
             <div className={'navLink'}>
                 <A href={'/'} text={'Main'}/>
-                <A href={'/create'} text={'Create'}/>
+                <A href={'/users'} text={'Users'}/>
             </div>
             <div>
                 {children}
